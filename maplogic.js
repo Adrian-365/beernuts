@@ -140,7 +140,7 @@ function createMarker(place) {
     var marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location,
-        icon: './images/pubIcon.png'
+        icon: './images/px.png'
     });
 
     //BEGIN add info tag to marker if clicked
@@ -164,40 +164,7 @@ function clearResults(markers) {
         markers[m].setMap(null)
     }
 }
-markers = []
-
-
-//END marker
-
-
-
-// google.maps.event.addDomListener(window, 'load', myMap());
-
-/*
-//add a marker
-  var marker = new google.maps.Marker({position:mapProp.center,
-  // icon:'pinkball.png'
-  // animation: google.maps.Animation.BOUNCE
-  });
-  marker.setMap(map);
-//add an infowindow
-  var infowindow = new google.maps.InfoWindow({
-    content: "I'm an infowindow!  Below me is a marker!"
-  });
-// Zoom to 9 when clicking on marker
-google.maps.event.addListener(marker,'mouseover',function() {
-  map.setCenter(marker.getPosition());
-  //add infowindow when cliked
-  infowindow.open(map,marker);
-  });
-google.maps.event.addListener(marker,'dblclick',function() {
-  map.setZoom(9);
-  map.setCenter(marker.getPosition());
-  //add infowindow when cliked
-  infowindow.open(map,marker);
-  });
- */
-// var infoWindow = new google.maps.InfoWindow;
+markers = [];
 
 // Try HTML5 geolocation.
 if (navigator.geolocation) {
@@ -225,13 +192,10 @@ if (navigator.geolocation) {
         handleLocationError(true, infowindow, map.getCenter());
     });
 
-
-
 } else {
     // Browser doesn't support Geolocation
     handleLocationError(false, infowindow, map.getCenter());
 }
-
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infowindow.setPosition(pos);
