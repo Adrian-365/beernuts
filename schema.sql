@@ -19,6 +19,8 @@ CREATE TABLE crawlers (
   user_zip VARCHAR(5) NOT NULL,
       -- Makes a string column called "user_zip" which cannot contain null --
   user_blurb VARCHAR(150) NOT NULL,
+      -- Makes a string column called "user_password" not null --
+  user_password VARCHAR(25) NOT NULL,
   -- Makes an TIMESTAMP column called "user_created" --
   user_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (idcrawlers)
