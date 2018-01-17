@@ -10,15 +10,11 @@ router.get('/', function(req, res) {
 });
 
 router.get('/index', function(req, res) {
-    crawler.findAll({})
-    .then(function(data) {
+    crawler.selectAll(
+    function(data) {
         res.json(data);
-    })
-    .catch(function(err){
-        console.error(err);
     })
 });
 
-
 // Export routes for server.js to use.
-module.exports = routes;
+module.exports = router;

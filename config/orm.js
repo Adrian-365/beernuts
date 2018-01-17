@@ -33,7 +33,7 @@ function objToSql(ob) {
 
 
 var orm = {
-    // selectAll grabs all from burgers table
+    // selectAll grabs all from crawlers table
     selectAll: function (tableInput, cb) {
         var queryString = 'SELECT * FROM ' + tableInput + ';';
         connection.query(queryString, function (err, result) {
@@ -48,5 +48,5 @@ var orm = {
 };
 
 
-// Export the orm object for the model (burger.js).
+// Export the orm object for the model (crawler.js).
 module.exports = orm;
