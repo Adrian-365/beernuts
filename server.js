@@ -1,9 +1,9 @@
 //Dependancies 
-var express = require("express");
-var bodyParser = require("body-parser");
-var methodOverride = require("method-override");
+var express = require('express');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 var exphbs = require('express-handlebars');
-var routes = require("./controllers/crawlers_controller.js");
+var routes = require('./controllers/crawlers_controller.js');
 
 //Sets up the express app
 var app = express();
@@ -27,6 +27,8 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
+
+app.use('/', routes);
 //Start server to begin listening 
 app.listen(port, function() {
     console.log("App listening on PORT " + port);
