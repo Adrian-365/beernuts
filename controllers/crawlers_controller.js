@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
     res.redirect('/index');
 });
 
-router.get('/api/crawler', function(req, res) {
+router.get('/index', function(req, res) {
     crawler.findAll({})
     .then(function(data) {
         res.json(data);
