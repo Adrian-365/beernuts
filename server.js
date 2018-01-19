@@ -3,8 +3,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var exphbs = require('express-handlebars');
-var routes = require('./controllers/crawlers_controller.js');
-
+var apiRoutes = require('./controllers/api_controller.js');
+var handlebarsRoutes = require('./controllers/handlebars_controller.js');
+var models = require("./models");
 //Sets up the express app
 var app = express();
 // override with POST having ?_method=PUT(or DELETE)
@@ -18,9 +19,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-// Serve static content from the public directory
-app.use(express.static("./public"));
-
 
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
@@ -28,10 +26,19 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 
-app.use('/', routes);
+app.use('/', handlebarsRoutes);
+app.use("/api", apiRoutes);
+
+// Serve static content from the public directory
+app.use(express.static("./public"));
+
 //Start server to begin listening 
-app.listen(port, function() {
-    console.log("App listening on PORT " + port);
+models.sequelize.sync({ force: true }).then(function () {
+    // run the sql query to seed db here
+    models.Crawler.bulkCreate([{ name: "Sammy", email: "asdasd"}, { name: "Bill",email: "asdasd" }, { name: "Tim", email: "asdasdsds" }]);
+    app.listen(port, function () {
+        console.log("App listening on PORT " + port);
+    });
 });
 
 
