@@ -128,7 +128,7 @@ function myMapx() {
     //set the map placement and zoom
     map = new google.maps.Map(mapDiv, {
         center: center,
-        zoom: 13,
+        zoom: 15,
         mapTypeControloptions: {
             mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
                 'styled_map'
@@ -269,7 +269,7 @@ function createMarker(place) {
     var marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location,
-        icon: './images/beer16px.png'
+        // icon: './images/beer16px.png'
     });
 
     //BEGIN add info tag to marker if clicked
@@ -279,7 +279,12 @@ function createMarker(place) {
         // var mapLink = "maps.google.com/maps/"+place.name
         infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
             'Rating: ' + ratingString + ' / out of 5<br>' + place.vicinity + '</div>' +
-            '<div class="view link"><a target="_blank" href="https://google.com/maps/place/' + place.name + '"><span> View on Google Maps </span></a></div>');
+            '<div class="view link"><a target="_blank" href="https://google.com/maps/place/' + place.name + '"><span> View on Google Maps </span></a><br>' +
+            // the button below should be able to return the place.place_id and add it to the table for the specific crawl
+            '<button value= "' + place.place_id + '"id="add" style="padding: 3px; margin-top: 4px; margin-right: 20px">Add to Crawl!</button>' +
+            // '<button id="pass" style="padding: 3px; margin-top: 4px">Hard Pass</button>' +
+            '</div>'
+        );
         console.log(place)
         infowindow.open(map, this);
     });
