@@ -143,10 +143,10 @@ function myMapx() {
     //----------------------------------------
     //----------------------------------------
 
-    //search for bars within 5 miles or 8047 meters
+    //search for bars within 1 mile
     request = {
         location: center,
-        radius: 4828,
+        radius: 1609,
         // types: ['bar', 'night_club'],
         keyword: ['pub', 'bar', 'cocktails', 'Happy hour drinks']
     }
@@ -210,7 +210,7 @@ function myMapx() {
             //find bars within listener ------------------.
             request = {
                 location: place.geometry.location,
-                radius: 4828,
+                radius: 1609,
                 // types: ['bar', 'night_club'],
                 keyword: ['pub', 'bar', 'cocktails', 'Happy hour drinks']
             };
@@ -238,7 +238,7 @@ function myMapx() {
             //find bars within listener ------------------.
             request = {
                 location: event.latLng,
-                radius: 4828,
+                radius: 1609,
                 // types: ['bar', 'night_club'],
                 keyword: ['pub', 'bar', 'cocktails', 'Happy hour drinks']
             };
@@ -269,7 +269,7 @@ function createMarker(place) {
     var marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location,
-        // icon: './images/beer32px.png'
+        icon: './images/beer32px.png'
     });
 
     //BEGIN add info tag to marker if clicked
@@ -312,7 +312,7 @@ if (navigator.geolocation) {
         //find bars within listener ------------------.
         var request = {
             location: pos,
-            radius: 8047,
+            radius: 1609,
             // types: ['bar', 'night_club'],
             keyword: ['pub', 'bar', 'cocktails', 'Happy hour drinks']
         };
