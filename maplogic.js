@@ -128,7 +128,7 @@ function myMapx() {
     //set the map placement and zoom
     map = new google.maps.Map(mapDiv, {
         center: center,
-        zoom: 13,
+        zoom: 15,
         mapTypeControloptions: {
             mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
                 'styled_map'
