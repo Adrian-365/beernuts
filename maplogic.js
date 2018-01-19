@@ -3,11 +3,123 @@ var infowindow;
 var request;
 var service;
 var markers = [];
-var lat = 33.642450;
-var lng = -117.918480;
+var lat = 33.683015;
+var lng = -117.755315;
 
 //initial map function:
 function myMapx() {
+
+    var styledMapType = new google.maps.StyledMapType(
+        [
+            { elementType: 'geometry', stylers: [{ color: '#ebe3cd' }] },
+            { elementType: 'labels.text.fill', stylers: [{ color: '#523735' }] },
+            { elementType: 'labels.text.stroke', stylers: [{ color: '#f5f1e6' }] },
+            {
+                featureType: 'administrative',
+                elementType: 'geometry.stroke',
+                stylers: [{ color: '#c9b2a6' }]
+            },
+            {
+                featureType: 'administrative.land_parcel',
+                elementType: 'geometry.stroke',
+                stylers: [{ color: '#dcd2be' }]
+            },
+            {
+                featureType: 'administrative.land_parcel',
+                elementType: 'labels.text.fill',
+                stylers: [{ color: '#ae9e90' }]
+            },
+            {
+                featureType: 'landscape.natural',
+                elementType: 'geometry',
+                stylers: [{ color: '#dfd2ae' }]
+            },
+            {
+                featureType: 'poi',
+                elementType: 'geometry',
+                stylers: [{ color: '#dfd2ae' }]
+            },
+            {
+                featureType: 'poi',
+                elementType: 'labels.text.fill',
+                stylers: [{ color: '#93817c' }]
+            },
+            {
+                featureType: 'poi.park',
+                elementType: 'geometry.fill',
+                stylers: [{ color: '#a5b076' }]
+            },
+            {
+                featureType: 'poi.park',
+                elementType: 'labels.text.fill',
+                stylers: [{ color: '#447530' }]
+            },
+            {
+                featureType: 'road',
+                elementType: 'geometry',
+                stylers: [{ color: '#f5f1e6' }]
+            },
+            {
+                featureType: 'road.arterial',
+                elementType: 'geometry',
+                stylers: [{ color: '#fdfcf8' }]
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'geometry',
+                stylers: [{ color: '#f8c967' }]
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'geometry.stroke',
+                stylers: [{ color: '#e9bc62' }]
+            },
+            {
+                featureType: 'road.highway.controlled_access',
+                elementType: 'geometry',
+                stylers: [{ color: '#e98d58' }]
+            },
+            {
+                featureType: 'road.highway.controlled_access',
+                elementType: 'geometry.stroke',
+                stylers: [{ color: '#db8555' }]
+            },
+            {
+                featureType: 'road.local',
+                elementType: 'labels.text.fill',
+                stylers: [{ color: '#806b63' }]
+            },
+            {
+                featureType: 'transit.line',
+                elementType: 'geometry',
+                stylers: [{ color: '#dfd2ae' }]
+            },
+            {
+                featureType: 'transit.line',
+                elementType: 'labels.text.fill',
+                stylers: [{ color: '#8f7d77' }]
+            },
+            {
+                featureType: 'transit.line',
+                elementType: 'labels.text.stroke',
+                stylers: [{ color: '#ebe3cd' }]
+            },
+            {
+                featureType: 'transit.station',
+                elementType: 'geometry',
+                stylers: [{ color: '#dfd2ae' }]
+            },
+            {
+                featureType: 'water',
+                elementType: 'geometry.fill',
+                stylers: [{ color: '#3486db' }]
+            },
+            {
+                featureType: 'water',
+                elementType: 'labels.text.fill',
+                stylers: [{ color: '#2998d' }]
+            }
+        ], { name: 'Styled Map' });
 
     //specify the map location
     var center = new google.maps.LatLng(lat, lng);
@@ -16,21 +128,35 @@ function myMapx() {
     //set the map placement and zoom
     map = new google.maps.Map(mapDiv, {
         center: center,
-        zoom: 10
+        zoom: 13,
+        mapTypeControloptions: {
+            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
+                'styled_map'
+            ]
+        }
     });
 
-    //search for bar in 3 miles or 4828 meters
+    //Associate the styled map with the MapTypeId and set it to display.
+    map.mapTypes.set('styled_map', styledMapType);
+    map.setMapTypeId('styled_map')
+
+    //----------------------------------------
+    //----------------------------------------
+
+    //search for bars within 5 miles or 8047 meters
     request = {
         location: center,
         radius: 4828,
-        types: ['bar, night_club']
+        // types: ['bar', 'night_club'],
+        keyword: ['pub', 'bar', 'cocktails', 'Happy hour drinks']
     }
+
     infowindow = new google.maps.InfoWindow();
 
     service = new google.maps.places.PlacesService(map);
 
     service.nearbySearch(request, callback);
-    ///NEW NEW NEW BEGIN
+
     // Create the search box and link it to the UI element.
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
@@ -81,14 +207,15 @@ function myMapx() {
                 position: place.geometry.location
             }));
 
-            //find pubs within listener ------------------.
+            //find bars within listener ------------------.
             request = {
                 location: place.geometry.location,
                 radius: 4828,
-                types: ['bar, night_club']
+                // types: ['bar', 'night_club'],
+                keyword: ['pub', 'bar', 'cocktails', 'Happy hour drinks']
             };
             service.nearbySearch(request, callback);
-            //END find pubs withing addListener
+            //END find bars withing addListener
 
             if (place.geometry.viewport) {
                 // Only geocodes have viewport.
@@ -112,7 +239,8 @@ function myMapx() {
             request = {
                 location: event.latLng,
                 radius: 4828,
-                types: ['bar, night_club']
+                // types: ['bar', 'night_club'],
+                keyword: ['pub', 'bar', 'cocktails', 'Happy hour drinks']
             };
             service.nearbySearch(request, callback);
             //END find bars withing addListener
@@ -126,6 +254,7 @@ function myMapx() {
 //BEGIN create virtual marker begin -------------------
 
 function callback(results, status) {
+    console.log(results);
     if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
             markers.push(createMarker(results[i]));
@@ -140,7 +269,7 @@ function createMarker(place) {
     var marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location,
-        icon: './images/px.png'
+        // icon: './images/beer32px.png'
     });
 
     //BEGIN add info tag to marker if clicked
@@ -164,7 +293,9 @@ function clearResults(markers) {
         markers[m].setMap(null)
     }
 }
-markers = [];
+markers = []
+
+//END marker
 
 // Try HTML5 geolocation.
 if (navigator.geolocation) {
@@ -181,8 +312,9 @@ if (navigator.geolocation) {
         //find bars within listener ------------------.
         var request = {
             location: pos,
-            radius: 4828,
-            types: ['bar, night_club']
+            radius: 8047,
+            // types: ['bar', 'night_club'],
+            keyword: ['pub', 'bar', 'cocktails', 'Happy hour drinks']
         };
         service.nearbySearch(request, callback);
         //END find bars withing addListener
@@ -192,10 +324,13 @@ if (navigator.geolocation) {
         handleLocationError(true, infowindow, map.getCenter());
     });
 
+
+
 } else {
     // Browser doesn't support Geolocation
     handleLocationError(false, infowindow, map.getCenter());
 }
+
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infowindow.setPosition(pos);
