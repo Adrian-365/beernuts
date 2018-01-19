@@ -8,15 +8,19 @@ body {
 	color: #666;
 }
 
+@font-face{
+	font-family: Cutepunk;
+	src: url('fonts/Cutepunk_Bold.otf');
+}
 /* Typography */
 h1#title {
-	font-family: 'Roboto Slab', serif;
+	font-family: Cutepunk;
 	font-weight: 300;
-	font-size: 3.2em;
+	font-size: 8.0em;
 	color: white;
 	text-shadow: 0 0 10px rgba(0,0,0,0.8);
 	margin: 0 auto;
-	padding-top: 100px;
+	padding-top: 50px;
 	max-width: 300px;
 	text-align: center;
 	position: relative;
