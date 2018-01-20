@@ -12,7 +12,7 @@ module.exports = function (sequelize, DataTypes) {
     {
         classMethods: {
             associate: function(models){
-                Crawler.hasmany(models.Crawl);
+                Crawler.hasmany(models.Crawls);
             }
         }
     
