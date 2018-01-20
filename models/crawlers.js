@@ -8,15 +8,15 @@ module.exports = function (sequelize, DataTypes) {
         user_zip: DataTypes.STRING(5),
         user_blurb: DataTypes.STRING,
         user_password: DataTypes.STRING
+    },
+    {
+        classMethods: {
+            associate: function(models){
+                Crawler.hasmany(models.Crawl);
+            }
+        }
+    
     });
-
-    // Crawler.associate = function (models) {
-    //     // Associating Crawler with Crawls
-    //     // When an Crawler is deleted, also delete any associated Crawls
-    //     Crawler.hasMany(models.Post, {
-    //         onDelete: "cascade"
-    //     });
-    // };
 
     return Crawler;
 };
