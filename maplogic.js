@@ -269,7 +269,7 @@ function createMarker(place) {
     var marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location,
-        // icon: './images/beer16px.png'
+        icon: './images/beer16px.png'
     });
 
     //BEGIN add info tag to marker if clicked
@@ -285,7 +285,15 @@ function createMarker(place) {
             // '<button id="pass" style="padding: 3px; margin-top: 4px">Hard Pass</button>' +
             '</div>'
         );
-        console.log(place)
+        $(document).on('click', '#add', addPlaceIdToCrawl);
+
+        function addPlaceIdToCrawl(event) {
+            var placeID = this.value;
+            console.log('place.place_id:  ' + placeID)
+                // insertToCrawl({
+                //     googleID: placeID
+                // });
+        }
         infowindow.open(map, this);
     });
     //END add info tag to marker
