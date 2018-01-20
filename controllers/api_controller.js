@@ -15,7 +15,7 @@ router.get('/crawlers', function (req, res) {
         });
 });
 router.get('/crawlers/:id', function (req, res) {
-    models.Crawler.findAll({
+    models.Crawler.findOne({
             where: {
                 id: req.params.id
             }
