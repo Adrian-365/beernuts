@@ -13,6 +13,10 @@ router.get('/sign-up', function (req, res) {
     res.render("sign-up");
 });
 
+router.get('/interface', function (req, res) {
+    res.render("interface");
+})
+
 router.get('/crawlers', function (req, res) {
     models.Crawler.findAll({})
         .then(function (data) {
