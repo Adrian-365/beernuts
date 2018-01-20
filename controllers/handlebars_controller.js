@@ -9,6 +9,10 @@ router.get('/', function (req, res) {
     res.render("index");
 });
 
+router.get('/sign-up', function (req, res) {
+    res.render("sign-up");
+});
+
 router.get('/crawlers', function (req, res) {
     models.Crawler.findAll({})
         .then(function (data) {
