@@ -7,6 +7,9 @@ var path = require('path');
 module.exports = function(app) {
 
     // index route loads dummycrawlers.html
+    app.get("/", function(req, res) {
+        res.sendFile(path.join(__dirname + "/../public/index.handlebars"))
+    });
     app.get("/crawlers", function (req, res) {
         res.sendFile(path.join(__dirname, "../public/dummycrawlers.html"));
     });
