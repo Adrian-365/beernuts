@@ -1,4 +1,8 @@
 {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0998168920704ea7aebc4ee8175a975ae3c1e2bd
   "name": "beernuts",
   "version": "1.0.0",
   "description": "pub crawl",
@@ -18,9 +22,15 @@
   },
   "homepage": "https://github.com/Adrian-365/beernuts#readme",
   "dependencies": {
+<<<<<<< HEAD
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+=======
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+>>>>>>> 0998168920704ea7aebc4ee8175a975ae3c1e2bd
     "handlebars": "^4.0.11",
     "method-override": "^2.3.10",
     "mysql": "^2.15.0",
@@ -28,3 +38,36 @@
     "sequelize": "^4.31.2"
   }
 }
+<<<<<<< HEAD
+=======
+
+    "name": "beernuts",
+    "version": "1.0.0",
+    "description": "pub crawl",
+    "main": "maplogic.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Adrian-365/beernuts.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Adrian-365/beernuts/issues"
+    },
+    "homepage": "https://github.com/Adrian-365/beernuts#readme",
+    "dependencies": {
+        "axios": "^0.17.1",
+        "body-parser": "^1.18.2",
+        "express": "^4.16.2",
+        "handlebars": "^4.0.11",
+        "method-override": "^2.3.10",
+        "mysql": "^2.15.0",
+        "sequelize": "^4.31.2"
+    }
+}
+
+>>>>>>> 0998168920704ea7aebc4ee8175a975ae3c1e2bd
