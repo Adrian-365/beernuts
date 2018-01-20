@@ -6,7 +6,11 @@ var exphbs = require('express-handlebars');
 var apiRoutes = require('./controllers/api_controller.js');
 var handlebarsRoutes = require('./controllers/handlebars_controller.js');
 var models = require("./models");
+
+
+
 var path = require('path');
+
 //Sets up the express app
 var app = express();
 // override with POST having ?_method=PUT(or DELETE)
@@ -31,7 +35,7 @@ app.use('/', handlebarsRoutes);
 app.use("/api", apiRoutes);
 
 // Serve static content from the public directory
-app.use(express.static("./public"));
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Start server to begin listening 
 models.sequelize.sync({ force: true }).then(function () {
