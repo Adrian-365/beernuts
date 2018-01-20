@@ -277,7 +277,7 @@ function createMarker(place) {
     var marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location,
-        icon: '.public/assets/images/beer16px.png'
+        icon: './public/assets/images/beer16px.png'
     });
 
     //BEGIN add info tag to marker if clicked
