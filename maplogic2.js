@@ -23,7 +23,7 @@
 
 //     axios.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + searchParam + '&key=' + apiKey);
 //     console.log(response);
-// // Capture the lat and lng into variables.
+//     // Capture the lat and lng into variables.
 
 // }
 
@@ -39,7 +39,7 @@
 //         .catch(function(error) {
 //             console.log(error);
 //         });
-//         // 	include a nested function.  If next_page_token exists, then run the search again.
+//     // 	include a nested function.  If next_page_token exists, then run the search again.
 
 // }
 
