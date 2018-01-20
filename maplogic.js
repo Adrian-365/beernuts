@@ -277,7 +277,16 @@ function createMarker(place) {
     var marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location,
+<<<<<<< HEAD
+<<<<<<< HEAD
+        icon: '../images/beer16px.png'
+        // icon: './images/beer16px.png'
+=======
+        icon: './images/beer16px.png'
+>>>>>>> 95cdd91abd3437a85fa75f4c06edd619751f7d7c
+=======
         icon: '.public/assets/images/beer16px.png'
+>>>>>>> b40145bcf0c7063addbb9b5c90a05e65d2c4c0cf
     });
 
     //BEGIN add info tag to marker if clicked
