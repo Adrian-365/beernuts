@@ -16,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/Adrian-365/beernuts/issues"
   },
-  "homepage": "https://github.com/Adrian-365/beernuts#readme"
+  "homepage": "https://github.com/Adrian-365/beernuts#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "handlebars": "^4.0.11",
+    "method-override": "^2.3.10",
+    "mysql": "^2.15.0",
+    "sequelize": "^4.31.2"
+  }
 }
