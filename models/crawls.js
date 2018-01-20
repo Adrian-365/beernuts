@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var Crawl = sequelize.define("Post", {
+    var Crawls = sequelize.define("Crawls", {
         placeId: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     {
         classMethods: {
             associate: function(models) {
-                Crawl.belongsTo(models.Crawlers,
+                Crawls.belongsTo(models.Crawlers,
                 {
                     onDelete: 'cascade',
                     foreignKey: {
@@ -18,5 +18,5 @@ module.exports = function(sequelize, DataTypes) {
             }
         }
     });
-    return Crawl;
+    return Crawls;
 };
