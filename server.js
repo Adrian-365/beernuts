@@ -58,7 +58,7 @@ models.sequelize.sync({
         user_state: "CA",
         user_zip: "92602",
         user_blurb: "Here to beer",
-        user_password: "flimflam"
+        user_password: ""
     }, {
         username: "Pilsneresque",
         user_email: "vivanaranja+1pilsneresque@gmail.com",
@@ -66,7 +66,7 @@ models.sequelize.sync({
         user_state: "CA",
         user_zip: "92672",
         user_blurb: "Tiny the Younger",
-        user_password: "triangletime"
+        user_password: ""
     }, {
         username: "Caskmaster",
         user_email: "vivanaranja+1caskmaster@gmail.com",
@@ -74,7 +74,7 @@ models.sequelize.sync({
         user_state: "CA",
         user_zip: "90803",
         user_blurb: "Nice to mead you",
-        user_password: "showmethedubbel"
+        user_password: ""
     }]);
     models.Crawls.bulkCreate([{
         placeId: "ChIJ7YHUCyAw3YARfZ79M1J6u68"
