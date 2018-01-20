@@ -159,7 +159,15 @@ function myMapx() {
 
     // Create the search box and link it to the UI element.
     var input = document.getElementById('pac-input');
-    var searchBox = new google.maps.places.SearchBox(input);
+    var searchBox = new google.maps.places.SearchBox(input, {
+        center: center,
+        zoom: 10,
+        mapTypeControloptions: {
+            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
+                'styled_map'
+            ]
+        }
+    });
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     // Bias the SearchBox results towards current map's viewport.
@@ -270,11 +278,15 @@ function createMarker(place) {
         map: map,
         position: place.geometry.location,
 <<<<<<< HEAD
+<<<<<<< HEAD
         icon: '../images/beer16px.png'
         // icon: './images/beer16px.png'
 =======
         icon: './images/beer16px.png'
 >>>>>>> 95cdd91abd3437a85fa75f4c06edd619751f7d7c
+=======
+        icon: '.public/assets/images/beer16px.png'
+>>>>>>> b40145bcf0c7063addbb9b5c90a05e65d2c4c0cf
     });
 
     //BEGIN add info tag to marker if clicked
