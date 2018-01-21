@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     {
         classMethods: {
             associate: function(models) {
-                Crawls.belongsTo(models.Crawlers,
+                Crawls.belongsTo(models.Crawler,
                 {
                     onDelete: 'cascade',
                     foreignKey: {
