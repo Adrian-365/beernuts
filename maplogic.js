@@ -11,113 +11,87 @@ function myMapx() {
 
     var styledMapType = new google.maps.StyledMapType(
         [
-            { elementType: 'geometry', stylers: [{ color: '#ebe3cd' }] },
-            { elementType: 'labels.text.fill', stylers: [{ color: '#523735' }] },
-            { elementType: 'labels.text.stroke', stylers: [{ color: '#f5f1e6' }] },
+            { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
+            { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
+            { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
             {
-                featureType: 'administrative',
-                elementType: 'geometry.stroke',
-                stylers: [{ color: '#c9b2a6' }]
-            },
-            {
-                featureType: 'administrative.land_parcel',
-                elementType: 'geometry.stroke',
-                stylers: [{ color: '#dcd2be' }]
-            },
-            {
-                featureType: 'administrative.land_parcel',
+                featureType: 'administrative.locality',
                 elementType: 'labels.text.fill',
-                stylers: [{ color: '#ae9e90' }]
-            },
-            {
-                featureType: 'landscape.natural',
-                elementType: 'geometry',
-                stylers: [{ color: '#dfd2ae' }]
-            },
-            {
-                featureType: 'poi',
-                elementType: 'geometry',
-                stylers: [{ color: '#dfd2ae' }]
+                stylers: [{ color: '#d59563' }]
             },
             {
                 featureType: 'poi',
                 elementType: 'labels.text.fill',
-                stylers: [{ color: '#93817c' }]
+                stylers: [{ color: '#d59563' }]
             },
             {
                 featureType: 'poi.park',
-                elementType: 'geometry.fill',
-                stylers: [{ color: '#a5b076' }]
+                elementType: 'geometry',
+                stylers: [{ color: '#263c3f' }]
             },
             {
                 featureType: 'poi.park',
                 elementType: 'labels.text.fill',
-                stylers: [{ color: '#447530' }]
+                stylers: [{ color: '#6b9a76' }]
             },
             {
                 featureType: 'road',
                 elementType: 'geometry',
-                stylers: [{ color: '#f5f1e6' }]
+                stylers: [{ color: '#38414e' }]
             },
             {
-                featureType: 'road.arterial',
-                elementType: 'geometry',
-                stylers: [{ color: '#fdfcf8' }]
+                featureType: 'road',
+                elementType: 'geometry.stroke',
+                stylers: [{ color: '#212a37' }]
+            },
+            {
+                featureType: 'road',
+                elementType: 'labels.text.fill',
+                stylers: [{ color: '#9ca5b3' }]
             },
             {
                 featureType: 'road.highway',
                 elementType: 'geometry',
-                stylers: [{ color: '#f8c967' }]
+                stylers: [{ color: '#746855' }]
             },
             {
                 featureType: 'road.highway',
                 elementType: 'geometry.stroke',
-                stylers: [{ color: '#e9bc62' }]
+                stylers: [{ color: '#1f2835' }]
             },
             {
-                featureType: 'road.highway.controlled_access',
-                elementType: 'geometry',
-                stylers: [{ color: '#e98d58' }]
-            },
-            {
-                featureType: 'road.highway.controlled_access',
-                elementType: 'geometry.stroke',
-                stylers: [{ color: '#db8555' }]
-            },
-            {
-                featureType: 'road.local',
+                featureType: 'road.highway',
                 elementType: 'labels.text.fill',
-                stylers: [{ color: '#806b63' }]
+                stylers: [{ color: '#f3d19c' }]
             },
             {
-                featureType: 'transit.line',
+                featureType: 'transit',
                 elementType: 'geometry',
-                stylers: [{ color: '#dfd2ae' }]
-            },
-            {
-                featureType: 'transit.line',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#8f7d77' }]
-            },
-            {
-                featureType: 'transit.line',
-                elementType: 'labels.text.stroke',
-                stylers: [{ color: '#ebe3cd' }]
+                stylers: [{ color: '#2f3948' }]
             },
             {
                 featureType: 'transit.station',
-                elementType: 'geometry',
-                stylers: [{ color: '#dfd2ae' }]
+                elementType: 'labels.text.fill',
+                stylers: [{ color: '#d59563' }]
             },
             {
                 featureType: 'water',
-                elementType: 'geometry.fill',
-                stylers: [{ color: '#3486db' }]
+                elementType: 'geometry',
+                stylers: [{ color: '#17263c' }]
             },
             {
                 featureType: 'water',
                 elementType: 'labels.text.fill',
-                stylers: [{ color: '#2998d' }]
+                stylers: [{ color: '#515c6d' }]
+            },
+            {
+                featureType: 'water',
+                elementType: 'labels.text.stroke',
+                stylers: [{ color: '#17263c' }]
+            },
+            {
+                featureType: 'poi.business',
+                stylers: [{ visibility: 'off' }]
             }
         ], { name: 'Styled Map' });
 
@@ -146,8 +120,8 @@ function myMapx() {
     //search for bars within 1 mile
     request = {
         location: center,
-        radius: 1609,
-        // types: ['bar', 'night_club'],
+        radius: 1600,
+        // types: ['bar'],
         keyword: ['pub', 'bar', 'cocktails', 'Happy hour drinks']
     }
 
@@ -161,7 +135,8 @@ function myMapx() {
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input, {
         center: center,
-        zoom: 10,
+        zoom: 15,
+        disableDefaultUI: true,
         mapTypeControloptions: {
             mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
                 'styled_map'
@@ -218,8 +193,8 @@ function myMapx() {
             //find bars within listener ------------------.
             request = {
                 location: place.geometry.location,
-                radius: 1609,
-                // types: ['bar', 'night_club'],
+                radius: 1600,
+                // types: ['bar'],
                 keyword: ['pub', 'bar', 'cocktails', 'Happy hour drinks']
             };
             service.nearbySearch(request, callback);
@@ -246,8 +221,8 @@ function myMapx() {
             //find bars within listener ------------------.
             request = {
                 location: event.latLng,
-                radius: 1609,
-                // types: ['bar', 'night_club'],
+                radius: 1600,
+                // types: ['bar'],
                 keyword: ['pub', 'bar', 'cocktails', 'Happy hour drinks']
             };
             service.nearbySearch(request, callback);
@@ -263,6 +238,10 @@ function myMapx() {
 
 function callback(results, status) {
     console.log(results);
+    if (results.next_page_token) {
+
+    }
+
     if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
             markers.push(createMarker(results[i]));
@@ -289,7 +268,7 @@ function createMarker(place) {
             'Rating: ' + ratingString + ' / out of 5<br>' + place.vicinity + '</div>' +
             '<div class="view link"><a target="_blank" href="https://google.com/maps/place/' + place.name + '"><span> View on Google Maps </span></a><br>' +
             // the button below should be able to return the place.place_id and add it to the table for the specific crawl
-            '<button value= "' + place.place_id + '"id="add" style="padding: 3px; margin-top: 4px; margin-right: 20px">Add to Crawl!</button>' +
+            '<button value="' + place.place_id + '" id="add" style="padding: 3px; margin-top: 4px; margin-right: 20px">Add to Crawl!</button>' +
             // '<button id="pass" style="padding: 3px; margin-top: 4px">Hard Pass</button>' +
             '</div>'
         );
@@ -333,12 +312,12 @@ if (navigator.geolocation) {
         //find bars within listener ------------------.
         var request = {
             location: pos,
-            radius: 1609,
-            // types: ['bar', 'night_club'],
+            radius: 1600,
+            // types: ['bar'],
             keyword: ['pub', 'bar', 'cocktails', 'Happy hour drinks']
         };
         service.nearbySearch(request, callback);
-        //END find bars withing addListener
+        //END find bars within addListener
 
 
     }, function() {

@@ -4,12 +4,10 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
         }
-    },
-    {
+    }, {
         classMethods: {
             associate: function(models) {
-                Crawls.belongsTo(models.Crawler,
-                {
+                Crawls.belongsTo(models.Crawlers, {
                     onDelete: 'cascade',
                     foreignKey: {
                         allowNull: false

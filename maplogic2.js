@@ -21,7 +21,7 @@
 // // Enter the search parameters into an api call to get the geocode info.
 // function getLatLng() {
 
-//     axios.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + searchParam + '&key=' + apiKey);
+//     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchParam}'&key=${apiKey}`);
 //     console.log(response);
 //     // Capture the lat and lng into variables.
 

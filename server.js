@@ -24,6 +24,14 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({
     type: "application/vnd.api+json"
 }));
+//needed for google maps search
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", '*');
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+    next();
+});
 
 
 app.engine('handlebars', exphbs({
@@ -41,7 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Start server to begin listening 
 models.sequelize.sync({
     force: true
-}).then(function () {
+}).then(function() {
     // run the sql query to seed db here
     models.Crawler.bulkCreate([{
         username: "BeerMe",
@@ -80,7 +88,7 @@ models.sequelize.sync({
     }, {
         placeId: "ChIJI9IA4SQw3YARL-56ZCO4KiM"
     }]);
-    app.listen(port, function () {
+    app.listen(port, function() {
         console.log("App listening on PORT " + port);
     });
 });
