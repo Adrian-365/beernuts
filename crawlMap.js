@@ -92,6 +92,21 @@ function myMap2() {
             }
         ], { name: 'Styled Map' });
 
+    function codeAddress() {
+        var placeId = 'ChIJWc1o14vp3IARqaSOSMFTGuY';
+        geocoder.geocode({ 'placeId': placeId }, function(results, status) {
+            if (status == 'OK') {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }
+
 
     //specify the map location
     var center = new google.maps.LatLng(lat, lng);
