@@ -256,6 +256,7 @@ function createMarker(place) {
     var marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location,
+        animation: google.maps.Animation.DROP,
         icon: './public/assets/images/beer16px.png'
     });
 
