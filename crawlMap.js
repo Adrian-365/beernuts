@@ -98,7 +98,12 @@ function myMap2() {
         var placeId = 'ChIJWc1o14vp3IARqaSOSMFTGuY';
         geocoder.geocode({ 'placeId': placeId }, function(results, status) {
             if (status == 'OK') {
-                console.log("is this thing on?");
+                console.log(results[0].geometry.location);
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
