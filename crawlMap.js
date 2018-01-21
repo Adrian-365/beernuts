@@ -92,21 +92,23 @@ function myMap2() {
             }
         ], { name: 'Styled Map' });
 
+    var geocoder = new google.maps.Geocoder();
+
     function codeAddress() {
         var placeId = 'ChIJWc1o14vp3IARqaSOSMFTGuY';
         geocoder.geocode({ 'placeId': placeId }, function(results, status) {
             if (status == 'OK') {
-                map.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location
-                });
+                console.log("is this thing on?");
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
         });
-    }
+    };
+    codeAddress();
 
+
+    var lat = 36.168347;
+    var lng = -115.138271;
 
     //specify the map location
     var center = new google.maps.LatLng(lat, lng);
