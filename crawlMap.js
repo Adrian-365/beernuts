@@ -136,6 +136,42 @@ function myMap2() {
 
     //loop through the crawlArray and get a marker for each placeId.
     const markers = [];
+    ///---TRYING A DIFFERENT WAY------------------------------------------------
+    // var service = new google.maps.places.PlacesService(map);
+
+    // //search for 
+    // function placeMarkers() {
+    //     for (var i = 0; i < crawlArray.length; i++) {
+    //         var placeId = crawlArray[i];
+    //         console.log(placeId)
+    //         request = {
+    //             location: center,
+    //             radius: 1600,
+    //             placeId: placeId
+    //         }
+    //         service.nearbySearch(request, callback);
+    //     }
+
+    //     function callback(results, status) {
+    //         console.log('callback results: ' + results);
+    //         if (status == google.maps.places.PlacesServiceStatus.OK) {
+    //             markers.push(createMarker(results[0]));
+    //         }
+
+    //     }
+
+    //     function createMarker(place) {
+    //         var placeLoc = place.geometry.location;
+    //         var marker = new google.maps.Marker({
+    //             map: map,
+    //             position: place.geometry.location,
+    //             animation: google.maps.Animation.DROP,
+    //             icon: './public/assets/images/beer16px.png'
+    //         });
+    //     }
+    // }
+    // placeMarkers();
+    ///----END DIFFERENT WAY-----------------
 
     function placeMarkers() {
         for (var i = 0; i < crawlArray.length; i++) {
@@ -157,40 +193,30 @@ function myMap2() {
         }
         console.log(markers)
 
+
+
+
     };
     //calls the above function
     placeMarkers();
 
-    //BEGIN add info tag to marker if clicked
-    //     google.maps.event.addListener(marker, 'click', function() {
-    //         var rating = place.rating;
-    //         var ratingString = rating.toString();
-    //         // var mapLink = "maps.google.com/maps/"+place.name
-    //         infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-    //             'Rating: ' + ratingString + ' / out of 5<br>' + place.vicinity + '</div>' +
-    //             '<div class="view link"><a target="_blank" href="https://google.com/maps/place/' + place.name + '"><span> View on Google Maps </span></a><br>' +
-    //             // the button below should be able to return the place.place_id and add it to the table for the specific crawl
-    //             '<button value="' + place.place_id + '" id="add" style="padding: 3px; margin-top: 4px; margin-right: 20px">Add to Crawl!</button>' +
-    //             // '<button id="pass" style="padding: 3px; margin-top: 4px">Hard Pass</button>' +
-    //             '</div>'
-    //         );
-    //         $(document).one('click', '#add', addPlaceIdToCrawl);
+    // Below the map, render an unordered list with the name and address of each place on the map.  Include corresponding number starting at 1.
+    // function createList() {
+    //     far(var i = 0; i < carwlArray.length; i++) {
 
-    //         function addPlaceIdToCrawl(event) {
-    //             var placeID = this.value;
-    //             console.log('place.place_id:  ' + placeID)
-    //                 // insertToCrawl({
-    //                 //     googleID: placeID
-    //                 // });
-    //         };
-    //         infowindow.open(map, this);
-    //     });
-    //     //END add info tag to marker
-    //     return marker;
+    //         var pubRow = `<tr><td>${place.name}</td><td>${place.vicinity}</td></tr>`;
+    //         $("#crawlList").append(pubRow);
+    //     }
+
+    // };
+
+
+
+
 };
-// END place marker 
-// In the info window, display the number
-// Below the map, render an unordered list with the name and address of each place on the map.  Include corresponding number starting at 1.
+
+
+
 
 
 //END myMap2()
