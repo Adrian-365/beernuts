@@ -4,8 +4,9 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        user_email: {
+        crawler_id: {
             type: DataTypes.STRING,
+            allowNull: false,
         }
     }, {
         classMethods: {

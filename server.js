@@ -25,7 +25,7 @@ app.use(bodyParser.json({
     type: "application/vnd.api+json"
 }));
 //needed for google maps search
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", '*');
     res.header("Access-Control-Allow-Credentials", true);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -49,7 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Start server to begin listening 
 models.sequelize.sync({
     force: true
-}).then(function() {
+}).then(function () {
     // run the sql query to seed db here
     // seed the crawlers table
     models.Crawler.bulkCreate([{
@@ -81,7 +81,13 @@ models.sequelize.sync({
     // seed the crawls table
     models.Crawls.bulkCreate([{
         places_id: "ChIJK69IL_bV3IARjfT8rdzx8Xo",
-        user_email: "vivanaranja+1caskmaster@gmail.com"
+        crawler_id: "1"
+    }, {
+        places_id: "ChIJK69IL_bV3IARjfT8rdzx8Xo",
+        crawler_id: "1"
+    }, {
+        places_id: "ChIJxVDbKPbV3IARthVVgHretkk",
+        crawler_id: "2"
     }]);
 
     // seed the places table
@@ -103,7 +109,7 @@ models.sequelize.sync({
         places_name: "The Cellar Restaurant and Spirit Room",
         places_address: "305 N Harbor Blvd, Fullerton"
     }]);
-    app.listen(port, function() {
+    app.listen(port, function () {
         console.log("App listening on PORT " + port);
     });
 });
