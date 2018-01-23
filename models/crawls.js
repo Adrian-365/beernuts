@@ -1,12 +1,15 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     var Crawls = sequelize.define("Crawls", {
-        placeId: {
+        places_id: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        user_email: {
+            type: DataTypes.STRING,
         }
     }, {
         classMethods: {
-            associate: function(models) {
+            associate: function (models) {
                 Crawls.belongsTo(models.Crawlers, {
                     onDelete: 'cascade',
                     foreignKey: {
