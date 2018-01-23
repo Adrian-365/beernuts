@@ -102,7 +102,7 @@ function myMapx() {
     //set the map placement and zoom
     map = new google.maps.Map(mapDiv, {
         center: center,
-        zoom: 15,
+        zoom: 14,
         mapTypeControloptions: {
             mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
                 'styled_map'
@@ -135,7 +135,7 @@ function myMapx() {
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input, {
         center: center,
-        zoom: 15,
+        zoom: 14,
         disableDefaultUI: true,
         mapTypeControloptions: {
             mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
@@ -267,9 +267,12 @@ function createMarker(place) {
         // var mapLink = "maps.google.com/maps/"+place.name
         infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
             'Rating: ' + ratingString + ' / out of 5<br>' + place.vicinity + '</div>' +
-            '<div class="view link"><a target="_blank" href="https://google.com/maps/place/' + place.name + '"><span> View on Google Maps </span></a><br>' +
+            '<div class="view link"><a target="_blank" href="https://google.com/maps/place/' + place.name + '/' + place.vicinity + '"><span> View on Google Maps </span></a><br>' +
             // the button below should be able to return the place.place_id and add it to the table for the specific crawl
-            '<button value="' + place.place_id + '" id="add" style="padding: 3px; margin-top: 4px; margin-right: 20px">Add to Crawl!</button>' +
+            '<button value="' + place.place_id +
+            '" placeName="' + place.name +
+            '" placeAddress="' + place.vicinity +
+            '" id="add" style="padding: 3px; margin-top: 4px; margin-right: 20px">Add to Crawl!</button>' +
             // '<button id="pass" style="padding: 3px; margin-top: 4px">Hard Pass</button>' +
             '</div>'
         );
@@ -277,10 +280,15 @@ function createMarker(place) {
 
         function addPlaceIdToCrawl(event) {
             var placeID = this.value;
-            console.log('place.place_id:  ' + placeID)
-                // insertToCrawl({
-                //     googleID: placeID
-                // });
+            console.log('place.place_id:  ' + placeID);
+            console.log(place.name);
+            console.log(place.vicinity);
+            var pubRow = `<tr><td>${place.name}</td><td>${place.vicinity}</td></tr>`;
+            $("#crawlList").append(pubRow);
+            // $('#crawlList').innerHTML(`<li>${place.name}   ${place.vicinity}</li>`)
+            // insertToCrawl({
+            //     googleID: placeID
+            // });
         };
         infowindow.open(map, this);
     });
