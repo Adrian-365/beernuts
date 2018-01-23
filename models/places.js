@@ -1,9 +1,18 @@
 module.exports = function (sequelize, DataTypes) {
     var Places = sequelize.define("Places", {
-        placeId: {
+        places_id: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        places_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        places_address: {
             type: DataTypes.STRING,
             allowNull: false,
         }
+
     },
         {
             classMethods: {

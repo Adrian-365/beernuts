@@ -25,7 +25,7 @@ app.use(bodyParser.json({
     type: "application/vnd.api+json"
 }));
 //needed for google maps search
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", '*');
     res.header("Access-Control-Allow-Credentials", true);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -49,8 +49,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Start server to begin listening 
 models.sequelize.sync({
     force: true
-}).then(function() {
+}).then(function () {
     // run the sql query to seed db here
+    // seed the crawlers table
     models.Crawler.bulkCreate([{
         username: "BeerMe",
         user_email: "vivanaranja+1beerme@gmail.com",
@@ -76,19 +77,33 @@ models.sequelize.sync({
         user_blurb: "Nice to mead you",
         user_password: ""
     }]);
+
+    // seed the crawls table
     models.Crawls.bulkCreate([{
-        placeId: "ChIJ7YHUCyAw3YARfZ79M1J6u68"
+        places_id: "ChIJK69IL_bV3IARjfT8rdzx8Xo",
+        user_email: "vivanaranja+1caskmaster@gmail.com"
     }]);
+
+    // seed the places table
     models.Places.bulkCreate([{
-        placeId: "ChIJ7YHUCyAw3YARfZ79M1J6u68"
+        places_id: "ChIJK69IL_bV3IARjfT8rdzx8Xo",
+        places_name: "Fullerton Brew Co",
+        places_address: "305 North Harbor Boulevard Suite 128, Fullerton"
     }, {
-        placeId: "ChIJuYNGVh4w3YARFyshF6Esgt0"
+        places_id: "ChIJLXSxOxwq3YARoJQdZJMT0pc",
+        places_name: "The Blue Door Bar",
+        places_address: "1310 Euclid Street, Fullerton"
+
     }, {
-        placeId: "ChIJ4QrZWB4w3YARtw_bH88lsjI"
+        places_id: "ChIJRw-Z_Qcq3YARKJCsE40Snm0",
+        places_name: "Heroes Bar & Grill",
+        places_address: "125 West Santa Fe Avenue, Fullerton"
     }, {
-        placeId: "ChIJI9IA4SQw3YARL-56ZCO4KiM"
+        places_id: "ChIJEQnbhfXV3IARcAyEwm94AbU",
+        places_name: "The Olde Ship",
+        places_address: "709 North Harbor Boulevard, Fullerton"
     }]);
-    app.listen(port, function() {
+    app.listen(port, function () {
         console.log("App listening on PORT " + port);
     });
 });
