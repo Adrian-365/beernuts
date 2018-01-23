@@ -4,13 +4,14 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        user_email: {
+        crawler_id: {
             type: DataTypes.STRING,
+            allowNull: false,
         }
     }, {
         classMethods: {
             associate: function (models) {
-                Crawls.belongsTo(models.Crawlers, {
+                Crawls.belongsTo(models.Crawler, {
                     onDelete: 'cascade',
                     foreignKey: {
                         allowNull: false
