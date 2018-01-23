@@ -227,6 +227,16 @@ function myMap2() {
 
     // };
 
+    function createList() {
+        for (var i = 0; i < crawlArray.length; i++) {
+
+            var pubRow = `<tr><td>${crawlArray[i].places_name}</td><td>${crawlArray[i].places_address}</td></tr>`;
+            $("#crawlList").append(pubRow);
+        }
+
+    };
+    createList();
+
 
 
 
