@@ -96,11 +96,28 @@ function myMap2() {
     var geocoder = new google.maps.Geocoder();
 
     //a mocked up array of placeId's from a specific crawl already established.
-    const crawlArray = ['ChIJgSeZiffV3IARPJViPs1jCyc', 'ChIJ7U9Bi_fV3IARnCKGfwemsT0', 'ChIJ9X6K8_fV3IARGSCFK4fZdfA', 'ChIJS_eL7_fV3IARkt2OQsEGH7E', 'ChIJC0Th0_fV3IARsf1y9Cnl0zc']
+    const crawlArray = [{
+        places_id: "ChIJC0Th0_fV3IARsf1y9Cnl0zc",
+        places_name: "Branagan's Irish Pub",
+        places_address: "213 North Harbor Boulevard, Fullerton"
+    }, {
+        places_id: "ChIJt0I-1Akq3YARa5kFf9wDubc",
+        places_name: "Back Alley Bar & Grill",
+        places_address: "116 West Wilshire Avenue, Fullerton"
+
+    }, {
+        places_id: "ChIJK69IL_bV3IARjfT8rdzx8Xo",
+        places_name: "Fullerton Brew Co",
+        places_address: "305 North Harbor Boulevard Suite 128, Fullerton"
+    }, {
+        places_id: "ChIJxVDbKPbV3IARthVVgHretkk",
+        places_name: "The Cellar Restaurant and Spirit Room",
+        places_address: "305 N Harbor Blvd, Fullerton"
+    }];
 
     //uses geocoder to get the lat/lang for the [0] index of the crawlArray and center the map on that place
     function getCentered() {
-        var placeId = crawlArray[0];
+        var placeId = crawlArray[0].places_id;
         geocoder.geocode({ 'placeId': placeId }, function(results, status) {
             if (status == 'OK') {
                 map.setCenter(results[0].geometry.location);
@@ -123,7 +140,7 @@ function myMap2() {
     //set the map placement and zoom
     map = new google.maps.Map(mapDiv, {
         center: center,
-        zoom: 17,
+        zoom: 16,
         mapTypeControloptions: {
             mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
                 'styled_map'
@@ -175,7 +192,7 @@ function myMap2() {
 
     function placeMarkers() {
         for (var i = 0; i < crawlArray.length; i++) {
-            var placeId = crawlArray[i];
+            var placeId = crawlArray[i].places_id;
             geocoder.geocode({ 'placeId': placeId }, function(results, status) {
                 if (status == 'OK') {
                     // markers.push(createMarker(results[0].geometry.location))
