@@ -280,7 +280,7 @@ function createMarker(place) {
 
         function addPlaceIdToCrawl(event) {
             var placeID = this.value;
-            console.log('place.place_id:  ' + placeID);
+            console.log('place.place_id:  ' + place.place_id);
             console.log(place.name);
             console.log(place.vicinity);
             var pubRow = `<tr><td>${place.name}</td><td>${place.vicinity}</td></tr>`;
