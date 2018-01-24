@@ -80,7 +80,7 @@ router.get("/crawls", function (req, res) {
     });
 });
 
-router.post("/crawl/:crawlID/add", function (req, res) {
+router.post("/crawl/add/:crawlID?", function (req, res) {
     var gpid = req.body.gpid;
     console.log(models.PlacesToCrawlsJoin);
     models.Places.findOne({
@@ -104,7 +104,7 @@ router.post("/crawl/:crawlID/add", function (req, res) {
             } else {
                 //create place and join
                 models.Places.create({
-                        placesName: req.body.name,
+                        placesName: req.body.placesName,
                         googlePlaceID: gpid,
                     })
                     .then(function (response) {
