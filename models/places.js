@@ -1,31 +1,22 @@
 module.exports = function (sequelize, DataTypes) {
     var Places = sequelize.define("Places", {
-        places_id: {
+        googlePlaceID : DataTypes.INTEGER,
+        placesName: {
             type: DataTypes.STRING,
-            allowNull: false,
-        },
-        places_name: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: false,   
         },
         places_address: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            type: DataTypes.STRING
         }
 
-    },
-        {
-            classMethods: {
-                associate: function (models) {
-                    Places.belongsTo(models.Places,
-                        {
-                            onDelete: 'cascade',
-                            foreignKey: {
-                                allowNull: false
-                            }
-                        });
-                }
-            }
+    });
+    Places.associate = function (models) {
+        // Associating Author with Posts
+        // When an Author is deleted, also delete any associated Posts
+        Places.belongsToMany(models.Crawls, {
+            through: {model: models.PlacesToCrawlsJoin, unique: false},
+            onDelete: "cascade"
         });
+    };
     return Places;
 };
