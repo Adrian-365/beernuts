@@ -8,12 +8,12 @@ var models = require("../models")
 // Shouldn't all this be in the routes files in the routes folder? Asking for a friend.
 
 
-router.post('/crawler/signup', function(req, res){
+router.post('/crawler/signup', function(req, res) {
     console.log(req.body);
     models.Crawler.create(req.body)
-    .then(function(resp) {
-        res.json(resp);
-    })
+        .then(function(resp) {
+            res.json(resp);
+        })
 });
 
 
@@ -94,6 +94,7 @@ router.get("/crawls", function(req, res) {
     });
 });
 
+
 router.post("/crawl/:crawlID/add", function (req, res) {
     var gpid = req.body.googlePlaceID;
     console.log(models.PlacesToCrawlsJoin);
@@ -146,4 +147,5 @@ router.post("/crawl/:crawlID/add", function (req, res) {
         })
 })
 // Export routes for server.js to use.
+
 module.exports = router;
