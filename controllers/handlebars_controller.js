@@ -15,7 +15,7 @@ router.get('/sign-up', function (req, res) {
 
 router.get('/interface', function (req, res) {
     res.render("interface");
-})
+});
 
 router.get('/crawlers', function (req, res) {
     models.Crawler.findAll({})
@@ -27,6 +27,7 @@ router.get('/crawlers', function (req, res) {
             console.error(err);
         });
 });
+
 
 // Export routes for server.js to use.
 module.exports = router;
