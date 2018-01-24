@@ -1,10 +1,14 @@
 {
     "development": {
         "username": "root",
-        "password": "root",
+        "password": "5eLUrWj=$J",
         "database": "beernuts_seq_db",
         "host": "localhost",
+<<<<<<< HEAD
         "port": "3306",
+=======
+        "port": "3307",
+>>>>>>> ff8f3d036be010b3e83ff7ecb467237962b54a3b
         "dialect": "mysql"
       
     },
