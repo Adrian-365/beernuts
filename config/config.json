@@ -3,8 +3,10 @@
         "username": "root",
         "password": "root",
         "database": "beernuts_seq_db",
-        "host": "12.0.0.1",
+        "host": "localhost",
+        "port": "3306",
         "dialect": "mysql"
+      
     },
     "test": {
         "username": "root",

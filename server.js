@@ -13,7 +13,7 @@ var app = express();
 // override with POST having ?_method=PUT(or DELETE)
 app.use(methodOverride('_method'));
 // Sets an initial port
-var port = process.env.PORT || 3307;
+var port = process.env.PORT || 3000;
 
 //Sets up express app to handle data parsing
 app.use(bodyParser.json());

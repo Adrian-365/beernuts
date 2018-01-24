@@ -17,6 +17,17 @@ router.get('/interface', function (req, res) {
     res.render("interface");
 })
 
+router.get('/my-crawls', function (req, res) {
+    models.Crawls.findAll({})
+        .then(function (data) {
+            console.log(data);
+            res.render("my-crawls", data)
+        })
+        .catch(function (err) {
+            console.error(err);
+        });
+});
+
 router.get('/crawlers', function (req, res) {
     models.Crawler.findAll({})
         .then(function (data) {
