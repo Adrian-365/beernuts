@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
     var Places = sequelize.define("Places", {
-        googlePlaceID : DataTypes.INTEGER,
+        googlePlaceID : DataTypes.STRING,
         placesName: {
             type: DataTypes.STRING,
             allowNull: false,   
