@@ -9,6 +9,17 @@ var lng = -117.755315;
 //initial map function:
 function myMapx() {
 
+    $(document).on('click', '.add', addPlaceIdToCrawl);
+
+    function addPlaceIdToCrawl(event) {
+        console.log("addeing place")
+        event.preventDefault();
+        console.log("event", event)
+        console.log(this);
+        var pubRow = `<tr><td>${this.getAttribute("place-name")}</td><td>${this.getAttribute("place-address")}</td></tr>`;
+        $("#crawlList").append(pubRow);
+
+    };
     var styledMapType = new google.maps.StyledMapType(
         [
             { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
@@ -261,7 +272,8 @@ function createMarker(place) {
     });
 
     //BEGIN add info tag to marker if clicked
-    google.maps.event.addListener(marker, 'click', function() {
+    google.maps.event.addListener(marker, 'click', function(event) {
+        console.log(place);
         var rating = place.rating;
         var ratingString = rating.toString();
         // var mapLink = "maps.google.com/maps/"+place.name
@@ -269,21 +281,18 @@ function createMarker(place) {
             'Rating: ' + ratingString + ' / out of 5<br>' + place.vicinity + '</div>' +
             '<div class="view link"><a target="_blank" href="https://google.com/maps/place/' + place.name + '/' + place.vicinity + '"><span> View on Google Maps </span></a></div><br>' +
             // the button below should be able to return the place.place_id and add it to the table for the specific crawl
-            '<div><button class="add" style="padding: 3px; margin-top: 4px; margin-right: 20px" >Add to Crawl!</button>' +
+            `<div><button gid="${place.place_id}" place-name="${place.name}" place-address="${place.vicinity}" class="add" style="padding: 3px; margin-top: 4px; margin-right: 20px" >Add to Crawl!</button> ` +
             // '<button id="pass" style="padding: 3px; margin-top: 4px">Hard Pass</button>' +
             '</div>'
         );
-        $(document).one('click', '.add', addPlaceIdToCrawl);
 
-        function addPlaceIdToCrawl(event) {
-            event.preventDefault();
-            var pubRow = `<tr><td>${place.name}</td><td>${place.vicinity}</td></tr>`;
-            $("#crawlList").append(pubRow);
-        };
+
         infowindow.open(map, this);
+
     });
     //END add info tag to marker
     return marker;
+
 }
 //END place marker 
 
@@ -339,4 +348,3 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infowindow.open(map);
 
 }
-// END HTML5 geolocation....
