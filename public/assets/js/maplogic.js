@@ -269,17 +269,14 @@ function createMarker(place) {
             'Rating: ' + ratingString + ' / out of 5<br>' + place.vicinity + '</div>' +
             '<div class="view link"><a target="_blank" href="https://google.com/maps/place/' + place.name + '/' + place.vicinity + '"><span> View on Google Maps </span></a></div><br>' +
             // the button below should be able to return the place.place_id and add it to the table for the specific crawl
-            '<div><button class="add" style="padding: 3px; margin-top: 4px; margin-right: 20px">Add to Crawl!</button>' +
+            '<div><button class="add" style="padding: 3px; margin-top: 4px; margin-right: 20px" >Add to Crawl!</button>' +
             // '<button id="pass" style="padding: 3px; margin-top: 4px">Hard Pass</button>' +
             '</div>'
         );
         $(document).one('click', '.add', addPlaceIdToCrawl);
 
-        function addPlaceIdToCrawl() {
-            // var placeID = this.value;
-            console.log('place.place_id:  ' + place.place_id);
-            console.log(place.name);
-            console.log(place.vicinity);
+        function addPlaceIdToCrawl(event) {
+            event.preventDefault();
             var pubRow = `<tr><td>${place.name}</td><td>${place.vicinity}</td></tr>`;
             $("#crawlList").append(pubRow);
         };
