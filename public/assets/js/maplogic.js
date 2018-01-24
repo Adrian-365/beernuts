@@ -23,7 +23,16 @@ function myMapx() {
         var pubAdress = this.getAttribute("place-address");
         var pubId = this.getAttribute('gid');
 
-        $.post
+        upsertPlace({
+            googlePlaceID: pubId,
+            placesName: pubName,
+            places_Address: pubAdress
+        });
+
+        // A function for creating an author. Calls getAuthors upon completion
+        function upsertPlace(pub) {
+            $.post("/crawl/add/:crawlID?", pub)
+        }
 
     };
     var styledMapType = new google.maps.StyledMapType(
@@ -274,7 +283,7 @@ function createMarker(place) {
         map: map,
         position: place.geometry.location,
         animation: google.maps.Animation.DROP,
-        icon: './public/assets/images/beer16px.png'
+        icon: './assets/images/beer16px.png'
     });
 
     //BEGIN add info tag to marker if clicked
