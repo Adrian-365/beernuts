@@ -12,12 +12,18 @@ function myMapx() {
     $(document).on('click', '.add', addPlaceIdToCrawl);
 
     function addPlaceIdToCrawl(event) {
-        console.log("addeing place")
+        console.log("adding place")
         event.preventDefault();
         console.log("event", event)
         console.log(this);
         var pubRow = `<tr><td>${this.getAttribute("place-name")}</td><td>${this.getAttribute("place-address")}</td></tr>`;
         $("#crawlList").append(pubRow);
+
+        var pubName = this.getAttribute("place-name");
+        var pubAdress = this.getAttribute("place-address");
+        var pubId = this.getAttribute('gid');
+
+        $.post
 
     };
     var styledMapType = new google.maps.StyledMapType(
