@@ -2,7 +2,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var exphbs = require('express-handlebars');
+var hbs = require('express-handlebars');
 var apiRoutes = require('./controllers/api_controller.js');
 var handlebarsRoutes = require('./controllers/handlebars_controller.js');
 var models = require("./models");
@@ -34,8 +34,9 @@ app.use(function (req, res, next) {
 });
 
 
-app.engine('handlebars', exphbs({
-    defaultLayout: 'main'
+app.engine('handlebars', hbs({
+    defaultLayout: 'main',
+    partialsDir: __dirname + '/views/partials/'
 }));
 app.set('view engine', 'handlebars');
 
@@ -45,6 +46,7 @@ app.use("/api", apiRoutes);
 
 // Serve static content from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 //Start server to begin listening 
 models.sequelize.sync({
