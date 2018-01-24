@@ -19,7 +19,7 @@ $(document).ready(function() {
             return;
         }
 
-        // Calling the upsertAuthor function and passing in the value of the name input
+        // Calling the upsertUser function and passing in the value of the name input
         upsertUser({
             username: userName.val().trim(),
             email: userEmail.val().trim(),
@@ -30,7 +30,7 @@ $(document).ready(function() {
             password: userPwd.val().trim(),
         });
     }
-    // A function for creating an author. Calls getAuthors upon completion
+    // A function for creating an user. Calls getUsers upon completion
     function upsertUser(userData) {
         $.post('/api/crawler', userData)
             .then(console.log(userData));
