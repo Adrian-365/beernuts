@@ -94,20 +94,20 @@ models.sequelize.sync({
     models.Places.bulkCreate([{
         googlePlaceID: "ChIJC0Th0_fV3IARsf1y9Cnl0zc",
         placesName: "Branagan's Irish Pub",
-        places_address: "213 North Harbor Boulevard, Fullerton"
+        placesAddress: "213 North Harbor Boulevard, Fullerton"
     }, {
         googlePlaceID: "ChIJt0I-1Akq3YARa5kFf9wDubc",
         placesName: "Back Alley Bar & Grill",
-        places_address: "116 West Wilshire Avenue, Fullerton"
+        placesAddress: "116 West Wilshire Avenue, Fullerton"
 
     }, {
         googlePlaceID: "ChIJK69IL_bV3IARjfT8rdzx8Xo",
         placesName: "Fullerton Brew Co",
-        places_address: "305 North Harbor Boulevard Suite 128, Fullerton"
+        placesAddress: "305 North Harbor Boulevard Suite 128, Fullerton"
     }, {
         googlePlaceID: "ChIJxVDbKPbV3IARthVVgHretkk",
         placesName: "The Cellar Restaurant and Spirit Room",
-        places_address: "305 N Harbor Blvd, Fullerton"
+        placesAddress: "305 N Harbor Blvd, Fullerton"
     }]);
     app.listen(port, function () {
         console.log("App listening on PORT " + port);
