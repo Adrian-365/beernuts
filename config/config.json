@@ -1,9 +1,10 @@
 {
     "development": {
         "username": "root",
-        "password": "5eLUrWj=$J",
+        "password": "root",
         "database": "beernuts_seq_db",
-        "host": "127.0.0.1",
+        "host": "localhost",
+        "port": "3307",
         "dialect": "mysql"
     },
     "test": {
