@@ -4,6 +4,12 @@
         "password": "root",
         "database": "beernuts_seq_db",
         "host": "localhost",
+<<<<<<< HEAD
+=======
+
+        "port": "3307",
+
+>>>>>>> 66c8b4993937f3cd4297c954fc1d85753657fe2d
         "dialect": "mysql"
       
     },
