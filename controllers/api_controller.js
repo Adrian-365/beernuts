@@ -80,54 +80,54 @@ router.get("/crawls", function(req, res) {
     });
 });
 
-router.post("/crawl/:crawlID/add", function(req, res) {
-        var gpid = req.body.gpid;
-        console.log(models.PlacesToCrawlsJoin);
-        models.Places.findOne({
-                where: {
-                    googlePlaceID: gpid
-                }
-            })
-            .then(function(response) {
-                if (response) {
-                    // use the response to add join
-                    models.PlacesToCrawlsJoin.create({
-                            CrawlId: req.params.crawlID,
-                            PlaceId: response.id
-                        })
-                        .then(function(resp) {
-                            res.json(resp);
-                        })
-                        .catch(function(err) {
-                            console.log(err);
-                        })
-                } else {
-                    //create place and join
-                    models.Places.create({
-                            placesName: req.body.name,
-                            googlePlaceID: gpid,
-                        })
-                        .then(function(response) {
-                            console.log(response);
-                            models.PlacesToCrawlsJoin.create({
-                                    CrawlId: req.params.crawlID,
-                                    PlaceId: response.id
-                                })
-                                .then(function(resp) {
-                                    res.json(resp);
-                                })
-                                .catch(function(err) {
-                                    console.log(err);
-                                })
-                        })
-                        .catch(function(err) {
-                            console.log(err);
-                        })
-                }
-            })
-            .catch(function(err) {
-                console.error(err)
-            })
-    })
-    // Export routes for server.js to use.
+router.post("/crawl/add/:crawlID?", function (req, res) {
+    var gpid = req.body.gpid;
+    console.log(models.PlacesToCrawlsJoin);
+    models.Places.findOne({
+            where: {
+                googlePlaceID: gpid
+            }
+        })
+        .then(function (response) {
+            if (response) {
+                // use the response to add join
+                models.PlacesToCrawlsJoin.create({
+                        CrawlId: req.params.crawlID,
+                        PlaceId: response.id
+                    })
+                    .then(function (resp) {
+                        res.json(resp);
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    })
+            } else {
+                //create place and join
+                models.Places.create({
+                        placesName: req.body.placesName,
+                        googlePlaceID: gpid,
+                    })
+                    .then(function (response) {
+                        console.log(response);
+                        models.PlacesToCrawlsJoin.create({
+                                CrawlId: req.params.crawlID,
+                                PlaceId: response.id
+                            })
+                            .then(function (resp) {
+                                res.json(resp);
+                            })
+                            .catch(function (err) {
+                                console.log(err);
+                            })
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    })
+            }
+        })
+        .catch(function (err) {
+            console.error(err)
+        })
+})
+// Export routes for server.js to use.
 module.exports = router;
