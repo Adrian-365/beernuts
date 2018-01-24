@@ -18,6 +18,7 @@ $(document).ready(function() {
         if (!userName.val().trim().trim()) {
             return;
         }
+
         // Calling the upsertAuthor function and passing in the value of the name input
         upsertUser({
             username: userName.val().trim(),
@@ -31,7 +32,8 @@ $(document).ready(function() {
     }
     // A function for creating an author. Calls getAuthors upon completion
     function upsertUser(userData) {
-        $.post('/crawler/signup', userData)
+        $.post('/api/crawler', userData)
+            .then(console.log(userData));
     }
 
 
