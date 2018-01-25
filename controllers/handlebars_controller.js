@@ -18,7 +18,6 @@ router.get('/interface', function(req, res) {
     res.render("interface");
 });
 
-<<<<<<< HEAD
 router.get('/my-crawls', function (req, res) {
     models.Crawls.findAll({})
         .then(function (data) {
@@ -31,10 +30,8 @@ router.get('/my-crawls', function (req, res) {
         });
 });
 
-router.get('/crawlers', function (req, res) {
-=======
+
 router.get('/crawlers', function(req, res) {
->>>>>>> 3848a8c71e6d85e9ecdc038dcf0aeb248ecf4312
     models.Crawler.findAll({})
         .then(function(data) {
             console.log(data);
