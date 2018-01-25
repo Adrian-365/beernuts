@@ -8,17 +8,17 @@ var models = require("../models")
 // Shouldn't all this be in the routes files in the routes folder? Asking for a friend.
 
 
-router.post('/crawler/signup', function(req, res){
+router.post('/crawler/signup', function(req, res) {
     console.log(req.body);
     models.Crawler.create(req.body)
-    .then(function(resp) {
-        res.json(resp);
-    })
+        .then(function(resp) {
+            res.json(resp);
+        })
 });
 
 
 
-
+// crawler routes
 router.get('/crawlers', function(req, res) {
 
     models.Crawler.findAll({})
@@ -64,6 +64,54 @@ router.delete('/crawlers/:id', function(req, res) {
             console.error(err);
         })
 });
+
+// crawls routes
+router.get('/crawls', function (req, res) {
+
+    models.Crawls.findAll({})
+        .then(function (data) {
+            res.json(data);
+        })
+        .catch(function (err) {
+            console.error(err);
+        });
+});
+router.get('/crawls/:id', function (req, res) {
+    models.Crawls.findOne({
+        where: {
+            id: req.params.id
+        }
+    })
+        .then(function (data) {
+            res.json(data);
+        })
+        .catch(function (err) {
+            console.error(err);
+        });
+});
+router.post('/crawls', function (req, res) {
+    models.Crawls.create(req.body)
+        .then(function (crawl) {
+            res.json(crawl)
+        })
+        .catch(function (err) {
+            console.error(err);
+        })
+});
+router.delete('/crawls/:id', function (req, res) {
+    models.Crawls.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(function (crawler) {
+        res.json(crawler);
+    })
+        .catch(function (err) {
+            console.error(err);
+        })
+});
+
+
 //add a bar to a crawl
 router.post('/places/:id', function(req, res) {
     models.Places.create(req.body)
@@ -74,7 +122,7 @@ router.post('/places/:id', function(req, res) {
             console.error(err);
         })
 
-})
+});
 
 //get all crawls
 
@@ -94,8 +142,9 @@ router.get("/crawls", function(req, res) {
     });
 });
 
-router.post("/crawl/add/:crawlID?", function (req, res) {
-    var gpid = req.body.gpid;
+// add to places router
+router.post("/crawl/:crawlID/add", function (req, res) {
+    var gpid = req.body.googlePlaceID;
     console.log(models.PlacesToCrawlsJoin);
     models.Places.findOne({
             where: {
@@ -120,6 +169,8 @@ router.post("/crawl/add/:crawlID?", function (req, res) {
                 models.Places.create({
                         placesName: req.body.placesName,
                         googlePlaceID: gpid,
+                        placesAddress: req.body.placesAddress
+
                     })
                     .then(function (response) {
                         console.log(response);
@@ -144,4 +195,5 @@ router.post("/crawl/add/:crawlID?", function (req, res) {
         })
 })
 // Export routes for server.js to use.
+
 module.exports = router;
