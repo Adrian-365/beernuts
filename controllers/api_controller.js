@@ -16,8 +16,6 @@ router.post('/crawlers/signup', function(req, res) {
         })
 });
 
-
-
 // crawler routes
 router.get('/crawlers', function(req, res) {
 
@@ -46,7 +44,7 @@ router.get('/crawlers/:id', function(req, res) {
 router.post('/crawlers', function(req, res) {
     models.Crawler.create(req.body)
         .then(function(crawler) {
-            res.json(crawler)
+            res.json(crawler);
         })
         .catch(function(err) {
             console.error(err);
