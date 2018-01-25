@@ -1,0 +1,9 @@
+{
+        "username": "Der Drinkmeister",
+        "user_email": "vivanaranja+1drinkmeister@gmail.com",
+        "user_city": "Long Beach",
+        "user_state": "CA",
+        "user_zip": "92602",
+        "user_blurb": "Ja, wir trinken, jetzt!",
+        "user_password": ""
+}
