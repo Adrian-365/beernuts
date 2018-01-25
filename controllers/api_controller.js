@@ -64,47 +64,47 @@ router.delete('/crawlers/:id', function(req, res) {
 });
 
 // crawls routes
-router.get('/crawls', function (req, res) {
+router.get('/crawls', function(req, res) {
 
     models.Crawls.findAll({})
-        .then(function (data) {
+        .then(function(data) {
             res.json(data);
         })
-        .catch(function (err) {
+        .catch(function(err) {
             console.error(err);
         });
 });
-router.get('/crawls/:id', function (req, res) {
+router.get('/crawls/:id', function(req, res) {
     models.Crawls.findOne({
-        where: {
-            id: req.params.id
-        }
-    })
-        .then(function (data) {
+            where: {
+                id: req.params.id
+            }
+        })
+        .then(function(data) {
             res.json(data);
         })
-        .catch(function (err) {
+        .catch(function(err) {
             console.error(err);
         });
 });
-router.post('/crawls', function (req, res) {
+router.post('/crawls', function(req, res) {
     models.Crawls.create(req.body)
-        .then(function (crawl) {
+        .then(function(crawl) {
             res.json(crawl)
         })
-        .catch(function (err) {
+        .catch(function(err) {
             console.error(err);
         })
 });
-router.delete('/crawls/:id', function (req, res) {
+router.delete('/crawls/:id', function(req, res) {
     models.Crawls.destroy({
-        where: {
-            id: req.params.id
-        }
-    }).then(function (crawler) {
-        res.json(crawler);
-    })
-        .catch(function (err) {
+            where: {
+                id: req.params.id
+            }
+        }).then(function(crawler) {
+            res.json(crawler);
+        })
+        .catch(function(err) {
             console.error(err);
         })
 });
@@ -141,57 +141,57 @@ router.get("/crawls", function(req, res) {
 });
 
 // add to places router
-router.post("/crawl/:crawlID/add", function (req, res) {
-    var gpid = req.body.googlePlaceID;
-    console.log(models.PlacesToCrawlsJoin);
-    models.Places.findOne({
-            where: {
-                googlePlaceID: gpid
-            }
-        })
-        .then(function (response) {
-            if (response) {
-                // use the response to add join
-                models.PlacesToCrawlsJoin.create({
-                        CrawlId: req.params.crawlID,
-                        PlaceId: response.id
-                    })
-                    .then(function (resp) {
-                        res.json(resp);
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
-            } else {
-                //create place and join
-                models.Places.create({
-                        placesName: req.body.placesName,
-                        googlePlaceID: gpid,
-                        placesAddress: req.body.placesAddress
+router.post("/crawl/:crawlID/add", function(req, res) {
+        var gpid = req.body.googlePlaceID;
+        console.log(models.PlacesToCrawlsJoin);
+        models.Places.findOne({
+                where: {
+                    googlePlaceID: gpid
+                }
+            })
+            .then(function(response) {
+                if (response) {
+                    // use the response to add join
+                    models.PlacesToCrawlsJoin.create({
+                            CrawlId: req.params.crawlID,
+                            PlaceId: response.id
+                        })
+                        .then(function(resp) {
+                            res.json(resp);
+                        })
+                        .catch(function(err) {
+                            console.log(err);
+                        })
+                } else {
+                    //create place and join
+                    models.Places.create({
+                            placesName: req.body.placesName,
+                            googlePlaceID: gpid,
+                            placesAddress: req.body.placesAddress
 
-                    })
-                    .then(function (response) {
-                        console.log(response);
-                        models.PlacesToCrawlsJoin.create({
-                                CrawlId: req.params.crawlID,
-                                PlaceId: response.id
-                            })
-                            .then(function (resp) {
-                                res.json(resp);
-                            })
-                            .catch(function (err) {
-                                console.log(err);
-                            })
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
-            }
-        })
-        .catch(function (err) {
-            console.error(err)
-        })
-})
-// Export routes for server.js to use.
+                        })
+                        .then(function(response) {
+                            console.log(response);
+                            models.PlacesToCrawlsJoin.create({
+                                    CrawlId: req.params.crawlID,
+                                    PlaceId: response.id
+                                })
+                                .then(function(resp) {
+                                    res.json(resp);
+                                })
+                                .catch(function(err) {
+                                    console.log(err);
+                                })
+                        })
+                        .catch(function(err) {
+                            console.log(err);
+                        })
+                }
+            })
+            .catch(function(err) {
+                console.error(err)
+            })
+    })
+    // Export routes for server.js to use.
 
 module.exports = router;

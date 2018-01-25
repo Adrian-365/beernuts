@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
     var username = $('#username');
     var user_email = $('#email');
@@ -30,7 +30,7 @@ $(document).ready(function () {
             // user_password: user_password.val().trim(),
         });
     }
-    // A function for creating an user. Calls getUsers upon completion
+    // A function for adding an user. Calls getUsers upon completion
     function upsertUser(userData) {
         $.post('/api/crawlers', userData)
             .then(console.log(userData));
