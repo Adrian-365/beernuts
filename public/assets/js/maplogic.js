@@ -29,9 +29,9 @@ function myMapx() {
             places_Address: pubAdress
         });
 
-        // A function for creating an author. Calls getAuthors upon completion
+        // A function for creating a pub to a place
         function upsertPlace(pub) {
-            $.post("/crawl/add/:crawlID?", pub)
+            $.post("api/places/:id", pub)
         }
 
     };

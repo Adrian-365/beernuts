@@ -4,30 +4,25 @@
 			<span id="logo">PubCrawl</span>
 		</h1>
 	</div>
-	<div class="login-box animated rotateInUpLeft">
-		<div class="box-header">
-			<h3>Login</h3>
+
+	<div class="panel panel-info animated rotateInUpLeft">
+<!-- Default panel contents -->
+  		<div class="panel-heading">
+			  <h3>Add Some Pubs to Your Crawl!</h3>
 		</div>
-		<form>
-			<label for="Email">Email
-				<span class='req'>*</span>
-			</label>
-			<br/>
-			<input type="text" name="email" id="email" required autocomplete="off" />
-			<br/>
-			<label for="password">Password
-				<span class='req'>*</span>
-			</label>
-			<br/>
-			<input type="password" name="password" id="password" required autocomplete="off" />
-			<br/>
-			<button type="submit" id="signin">
-				<a href="#"></a>Sign In</button>
-			<br/>
-			<h4>Not a crawler yet? </h4>
-			<a href="/sign-up" onclick="preventDefault();">
-				<p class="medium">Sign Up!</p>
-			</a>
-		</form>
+  		<div class="panel-body">
+    <!-- below id="pac-input" is important -->
+            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                    <!-- below id=="googleMap" is important -->
+            <div id="googleMap" style='height:450px; width: 100%' class='col-md-offset-2'></div>>
+  		</div>
+
+  <!-- Table -->
+  <table class="table" id="crawlList">
+    <tr>
+                        <th>Pub Name</th>
+                        <th>Pub Address</th>
+                    </tr>
+  </table>
 	</div>
 </div>
