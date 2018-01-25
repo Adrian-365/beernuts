@@ -26,7 +26,7 @@ function myMapx() {
         upsertPlace({
             googlePlaceID: pubId,
             placesName: pubName,
-            places_Address: pubAdress
+            placesAddress: pubAdress
         });
 
         // A function for creating a pub to a place
