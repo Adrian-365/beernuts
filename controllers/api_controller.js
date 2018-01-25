@@ -8,7 +8,7 @@ var models = require("../models")
 // Shouldn't all this be in the routes files in the routes folder? Asking for a friend.
 
 
-router.post('/crawler/signup', function(req, res) {
+router.post('/crawlers/signup', function(req, res) {
     console.log(req.body);
     models.Crawler.create(req.body)
         .then(function(resp) {
