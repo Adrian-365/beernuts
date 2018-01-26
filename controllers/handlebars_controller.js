@@ -16,9 +16,26 @@ router.get('/makecrawl', function(req, res) {
     res.render("makecrawl");
 });
 
+<<<<<<< HEAD
 router.get('/my-crawls', function (req, res) {
     res.render("my-crawls");
         
+=======
+router.get('/viewcrawls', function(req, res) {
+    res.render("viewcrawls");
+});
+
+router.get('/my-crawls', function(req, res) {
+    models.Crawls.findAll({})
+        .then(function(data) {
+            console.log('mycrawls', data);
+            // res.render("my-crawls", data)
+            res.json(data);
+        })
+        .catch(function(err) {
+            console.error(err);
+        });
+>>>>>>> 30a42bc1d24080a586294e656661e203dfbbbf88
 });
 
 router.get('/crawlers', function(req, res) {
