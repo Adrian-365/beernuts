@@ -1,7 +1,7 @@
 {
     "development": {
         "username": "root",
-        "password": "5eLUrWj=$J",
+        "password": "root",
         "database": "beernuts_seq_db",
         "host": "localhost",
         "dialect": "mysql"
