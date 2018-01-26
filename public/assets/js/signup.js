@@ -33,7 +33,9 @@ $(document).ready(function() {
     // A function for adding an user. Calls getUsers upon completion
     function upsertUser(userData) {
         $.post('/api/crawlers/signup', userData)
-            .then(console.log(userData));
+            .done(function(resp) {
+                window.location.assign("/login");
+            })
     }
 
 
