@@ -18,6 +18,10 @@ router.get('/interface', function(req, res) {
     res.render("interface");
 });
 
+router.get('/makecrawl', function(req, res) {
+    res.render("makecrawl");
+});
+
 router.get('/my-crawls', function (req, res) {
     models.Crawls.findAll({})
         .then(function (data) {
@@ -30,7 +34,6 @@ router.get('/my-crawls', function (req, res) {
         });
 });
 
-
 router.get('/crawlers', function(req, res) {
     models.Crawler.findAll({})
         .then(function(data) {
@@ -42,7 +45,7 @@ router.get('/crawlers', function(req, res) {
         });
 });
 
-router.get("/pubmap", function(req, res) {
+router.get("/dummymap", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/dummyhtml.html"));
 });
 

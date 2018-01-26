@@ -1,12 +1,12 @@
 $(document).ready(function() {
 
-    var userName = $('#username');
-    var userEmail = $('#email');
-    var userCity = $('#city');
-    var userState = $('#state');
-    var userZip = $('#zip');
-    var userBlurb = $('#blurb');
-    var userPwd = $('#password');
+    var username = $('#username');
+    var user_email = $('#email');
+    var user_city = $('#city');
+    var user_state = $('#state');
+    var user_zip = $('#zip');
+    var user_blurb = $('#blurb');
+    var user_password = $('#password');
 
 
 
@@ -15,24 +15,24 @@ $(document).ready(function() {
     function addUser(event) {
         event.preventDefault();
         // Don't do anything if the name fields hasn't been filled out
-        if (!userName.val().trim().trim()) {
+        if (!username.val().trim().trim()) {
             return;
         }
 
         // Calling the upsertUser function and passing in the value of the name input
         upsertUser({
-            username: userName.val().trim(),
-            email: userEmail.val().trim(),
-            city: userCity.val().trim(),
-            state: userState.val().trim(),
-            zip: userZip.val().trim(),
-            blurb: userBlurb.val().trim(),
-            password: userPwd.val().trim(),
+            username: username.val().trim(),
+            user_email: user_email.val().trim(),
+            user_city: user_city.val().trim(),
+            user_state: user_state.val().trim(),
+            user_zip: user_zip.val().trim(),
+            user_blurb: user_blurb.val().trim(),
+            // user_password: user_password.val().trim(),
         });
     }
-    // A function for creating an user. Calls getUsers upon completion
+    // A function for adding an user. Calls getUsers upon completion
     function upsertUser(userData) {
-        $.post('/api/crawler', userData)
+        $.post('/api/crawlers/signup', userData)
             .then(console.log(userData));
     }
 

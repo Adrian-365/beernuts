@@ -26,12 +26,12 @@ function myMapx() {
         upsertPlace({
             googlePlaceID: pubId,
             placesName: pubName,
-            places_Address: pubAdress
+            placesAddress: pubAdress
         });
 
-        // A function for creating an author. Calls getAuthors upon completion
+        // A function for creating a pub to a place
         function upsertPlace(pub) {
-            $.post("/crawl/add/:crawlID?", pub)
+            $.post("api/places/:id", pub)
         }
 
     };

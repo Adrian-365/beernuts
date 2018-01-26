@@ -95,6 +95,18 @@ function myMap2() {
     //define geocoder as the google maps Geocoder method
     var geocoder = new google.maps.Geocoder();
 
+
+    // Function for retrieving pubs and getting them ready to be rendered to the page
+    function getCrawlMap() {
+        $.get("/api/authors", function(data) {
+            var rowsToAdd = [];
+            for (var i = 0; i < data.length; i++) {
+                rowsToAdd.push(createAuthorRow(data[i]));
+            }
+            renderAuthorList(rowsToAdd);
+            nameInput.val("");
+        });
+    }
     //a mocked up array of placeId's from a specific crawl already established.
     const crawlArray = [{
         places_id: "ChIJC0Th0_fV3IARsf1y9Cnl0zc",
