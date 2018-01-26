@@ -1,13 +1,19 @@
+require("dotenv").config();
+
 //Dependancies 
 var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var exphbs = require('express-handlebars');
+var hbs = require('express-handlebars');
 var apiRoutes = require('./controllers/api_controller.js');
+var authRoutes = require("./controllers/auth_ctrl");
 var handlebarsRoutes = require('./controllers/handlebars_controller.js');
 var models = require("./models");
 var path = require('path');
-
+var cookieParser = require('cookie-parser');
+var jwt = require("jsonwebtoken");
+var nonAuthHbsRoutes = require("./controllers/non.auth.hbs.routes");
+var authHelpers = require("./helpers/auth.helpers")
 //Sets up the express app
 var app = express();
 // override with POST having ?_method=PUT(or DELETE)
@@ -24,8 +30,31 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({
     type: "application/vnd.api+json"
 }));
+
+app.use(cookieParser());
+
+var auth = function (req, res, next) {
+    try {
+        console.log("COOKIE AUTH", req.get("Authorization"));
+        var token = req.cookies.token || req.get("Authorization").split(" ")[1]
+        console.log(token);
+        try {
+            console.log("we trying")
+            jwt.verify(token, process.env.JWT_SECRET);
+            next();
+        } catch (err) {
+            console.log("we failin", err)
+            throw new Error("Not Authenticated");
+        }
+    } catch (err) {
+        console.log("something is really wrong", err)
+        throw new Error("Not Authenticated");
+    }
+
+}
+
 //needed for google maps search
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", '*');
     res.header("Access-Control-Allow-Credentials", true);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -34,60 +63,68 @@ app.use(function(req, res, next) {
 });
 
 
-app.engine('handlebars', exphbs({
-    defaultLayout: 'main'
+app.engine('handlebars', hbs({
+    defaultLayout: 'main',
+    partialsDir: __dirname + '/views/partials/'
 }));
 app.set('view engine', 'handlebars');
+// Serve static content from the public directory
+app.use(express.static(path.join(__dirname, 'public')));
 
-
+app.use("/auth", authRoutes)
+app.use('/', nonAuthHbsRoutes);
+app.use(auth);
 app.use('/', handlebarsRoutes);
 app.use("/api", apiRoutes);
 
-// Serve static content from the public directory
-app.use(express.static(path.join(__dirname, 'public')));
+
+var insecSalt = authHelpers.getSalt();
 
 //Start server to begin listening 
 models.sequelize.sync({
     force: true
-}).then(function() {
+}).then(function () {
     // run the sql query to seed db here
     // seed the crawlers table
     models.Crawler.bulkCreate([{
         username: "BeerMe",
-        user_email: "vivanaranja+1beerme@gmail.com",
-        user_city: "Irvine",
-        user_state: "CA",
-        user_zip: "92602",
-        user_blurb: "Here to beer",
-        user_password: ""
+        email: "vivanaranja+1beerme@gmail.com",
+        city: "Irvine",
+        state: "CA",
+        zip: "92602",
+        blurb: "Here to beer",
+        salt: insecSalt,
+        hash: authHelpers.getHash("meme", insecSalt)
     }, {
         username: "Pilsneresque",
-        user_email: "vivanaranja+1pilsneresque@gmail.com",
-        user_city: "San Clemente",
-        user_state: "CA",
-        user_zip: "92672",
-        user_blurb: "Tiny the Younger",
-        user_password: ""
+        email: "vivanaranja+1pilsneresque@gmail.com",
+        city: "San Clemente",
+        state: "CA",
+        zip: "92672",
+        blurb: "Tiny the Younger",
+            salt: insecSalt,
+            hash: authHelpers.getHash("meme", insecSalt)
     }, {
         username: "Caskmaster",
-        user_email: "vivanaranja+1caskmaster@gmail.com",
-        user_city: "Long Beach",
-        user_state: "CA",
-        user_zip: "90803",
-        user_blurb: "Nice to mead you",
-        user_password: ""
+        email: "asd@asd.net",
+        city: "Long Beach",
+        state: "CA",
+        zip: "90803",
+        blurb: "Nice to mead you",
+            salt: insecSalt,
+            hash: authHelpers.getHash("meme", insecSalt)
     }]);
 
     // seed the crawls table
     models.Crawls.bulkCreate([{
-        places_id: "ChIJK69IL_bV3IARjfT8rdzx8Xo",
-        crawler_id: "1"
+        placesID: "ChIJK69IL_bV3IARjfT8rdzx8Xo",
+        crawlerID: "1"
     }, {
-        places_id: "ChIJK69IL_bV3IARjfT8rdzx8Xo",
-        crawler_id: "1"
+        placesID: "ChIJK69IL_bV3IARjfT8rdzx8Xo",
+        crawlerID: "1"
     }, {
-        places_id: "ChIJxVDbKPbV3IARthVVgHretkk",
-        crawler_id: "2"
+        placesID: "ChIJxVDbKPbV3IARthVVgHretkk",
+        crawlerID: "2"
     }]);
 
     // seed the places table
@@ -109,7 +146,7 @@ models.sequelize.sync({
         placesName: "The Cellar Restaurant and Spirit Room",
         placesAddress: "305 N Harbor Blvd, Fullerton"
     }]);
-    app.listen(port, function() {
+    app.listen(port, function () {
         console.log("App listening on PORT " + port);
     });
 });

@@ -95,7 +95,22 @@ function myMap2() {
     //define geocoder as the google maps Geocoder method
     var geocoder = new google.maps.Geocoder();
 
-    //a mocked up array of placeId's from a specific crawl already established.
+
+    // Function for retrieving pubs and getting them ready to be rendered to the page
+
+    // const crawlArray = [];
+
+    // function getCrawlMap() {
+    //     $.get("/api/places", function(data) {
+    //             console.log(data)
+    //             crawlArray = data;
+    //         }
+
+    //     );
+    // }
+
+    // getCrawlMap();
+    // a mocked up array of placeId 's from a specific crawl already established.
     const crawlArray = [{
         places_id: "ChIJC0Th0_fV3IARsf1y9Cnl0zc",
         places_name: "Branagan's Irish Pub",
@@ -200,7 +215,7 @@ function myMap2() {
                         map: map,
                         position: results[0].geometry.location,
                         animation: google.maps.Animation.DROP,
-                        icon: './public/assets/images/beer16px.png'
+                        icon: './assets/images/beer16px.png'
                     });
                 } else {
                     alert('Geocode was not successful for the following reason: ' + status);

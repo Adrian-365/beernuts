@@ -1,13 +1,27 @@
 module.exports = function (sequelize, DataTypes) {
     var Crawler = sequelize.define("Crawler", {
         // Giving the Crawler model a name of type STRING
-        username: DataTypes.STRING,
-        email: DataTypes.STRING,
+        email: { 
+            type: DataTypes.STRING,
+            unique: true,
+            require: true,
+            validate: {
+                isEmail: true
+            }
+
+        },
         city: DataTypes.STRING,
         state: DataTypes.STRING(2),
         zip: DataTypes.STRING(5),
         blurb: DataTypes.STRING,
-        password: DataTypes.STRING
+        salt: {
+            type: DataTypes.STRING,
+            require: true
+        },
+        hash: {
+            type: DataTypes.STRING(1500), 
+            require: true 
+        }
     });
 
      Crawler.associate = function (models) {
