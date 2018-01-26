@@ -6,13 +6,7 @@ var models = require("../models")
 var path = require("path");
 
 // Create all our routes and set up logic within those routes where required.
-router.get('/', function(req, res) {
-    res.render("index");
-});
 
-router.get('/sign-up', function(req, res) {
-    res.render("sign-up");
-});
 
 router.get('/interface', function(req, res) {
     res.render("interface");
@@ -49,6 +43,9 @@ router.get("/dummymap", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/dummyhtml.html"));
 });
 
+router.get("/dummycrawlmap", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/dummyCrawlMap.html"));
+});
 
 // Export routes for server.js to use.
 module.exports = router;

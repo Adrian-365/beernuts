@@ -1,12 +1,15 @@
+function getJWTPayload() {
+    return JSON.parse(window.atob(localStorage.getItem("token").split('.')[1]));
+}
 $(document).ready(function() {
 
     var username = $('#username');
-    var user_email = $('#email');
-    var user_city = $('#city');
-    var user_state = $('#state');
-    var user_zip = $('#zip');
-    var user_blurb = $('#blurb');
-    var user_password = $('#password');
+    var email = $('#email');
+    var city = $('#city');
+    var state = $('#state');
+    var zip = $('#zip');
+    var blurb = $('#blurb');
+    var password = $('#password');
 
 
 
@@ -14,6 +17,7 @@ $(document).ready(function() {
 
     function addUser(event) {
         event.preventDefault();
+        console.log("submit")
         // Don't do anything if the name fields hasn't been filled out
         if (!username.val().trim().trim()) {
             return;
@@ -22,20 +26,48 @@ $(document).ready(function() {
         // Calling the upsertUser function and passing in the value of the name input
         upsertUser({
             username: username.val().trim(),
-            user_email: user_email.val().trim(),
-            user_city: user_city.val().trim(),
-            user_state: user_state.val().trim(),
-            user_zip: user_zip.val().trim(),
-            user_blurb: user_blurb.val().trim(),
-            // user_password: user_password.val().trim(),
+            email: email.val().trim(),
+            user_city: city.val().trim(),
+            user_state: state.val().trim(),
+            user_zip: zip.val().trim(),
+            user_blurb: blurb.val().trim(),
+            password: password.val().trim(),
         });
     }
     // A function for adding an user. Calls getUsers upon completion
     function upsertUser(userData) {
-        $.post('/api/crawlers/signup', userData)
-            .then(console.log(userData));
+        $.post('/auth/register', userData)
+            .done(function(resp) {
+                window.location.assign("/");
+            })
     }
 
+    $("#signin").on("click", function(e) {
+        console.log("yo")
+        e.preventDefault();
+        $.post("/auth/login", {
+            email: email.val(),
+            password: password.val()
+        })
+        .done(function(resp) {
+            console.log(resp);
+            document.cookie = "token=" +resp.token;
+            window.localStorage.setItem("token", resp.token)
+            location.assign("/interface")
+        })
+    })
 
+    console.log(window.location)
+    if(window.location.pathname === "/interface") {
+        var payload = getJWTPayload();
+        console.log(payload)
+        $.ajax({
+            url: "api/crawls",
+            headers: {'Authorization': "Bearer " + window.localStorage.getItem("token")},
+            method: "GET"
+        }).done(function(resp) { 
+            console.log(resp);
+        })
+    }
     //END document.ready
 });

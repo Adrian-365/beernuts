@@ -97,35 +97,38 @@ function myMap2() {
 
 
     // Function for retrieving pubs and getting them ready to be rendered to the page
-    function getCrawlMap() {
-        $.get("/api/authors", function(data) {
-            var rowsToAdd = [];
-            for (var i = 0; i < data.length; i++) {
-                rowsToAdd.push(createAuthorRow(data[i]));
-            }
-            renderAuthorList(rowsToAdd);
-            nameInput.val("");
-        });
-    }
-    //a mocked up array of placeId's from a specific crawl already established.
-    const crawlArray = [{
-        places_id: "ChIJC0Th0_fV3IARsf1y9Cnl0zc",
-        places_name: "Branagan's Irish Pub",
-        places_address: "213 North Harbor Boulevard, Fullerton"
-    }, {
-        places_id: "ChIJt0I-1Akq3YARa5kFf9wDubc",
-        places_name: "Back Alley Bar & Grill",
-        places_address: "116 West Wilshire Avenue, Fullerton"
 
-    }, {
-        places_id: "ChIJK69IL_bV3IARjfT8rdzx8Xo",
-        places_name: "Fullerton Brew Co",
-        places_address: "305 North Harbor Boulevard Suite 128, Fullerton"
-    }, {
-        places_id: "ChIJxVDbKPbV3IARthVVgHretkk",
-        places_name: "The Cellar Restaurant and Spirit Room",
-        places_address: "305 N Harbor Blvd, Fullerton"
-    }];
+    const crawlArray = [];
+
+    function getCrawlMap() {
+        $.get("/api/places", function(data) {
+                console.log(data)
+                crawlArray = data;
+            }
+
+        );
+    }
+
+    getCrawlMap();
+    //a mocked up array of placeId's from a specific crawl already established.
+    // const crawlArray = [{
+    //     places_id: "ChIJC0Th0_fV3IARsf1y9Cnl0zc",
+    //     places_name: "Branagan's Irish Pub",
+    //     places_address: "213 North Harbor Boulevard, Fullerton"
+    // }, {
+    //     places_id: "ChIJt0I-1Akq3YARa5kFf9wDubc",
+    //     places_name: "Back Alley Bar & Grill",
+    //     places_address: "116 West Wilshire Avenue, Fullerton"
+
+    // }, {
+    //     places_id: "ChIJK69IL_bV3IARjfT8rdzx8Xo",
+    //     places_name: "Fullerton Brew Co",
+    //     places_address: "305 North Harbor Boulevard Suite 128, Fullerton"
+    // }, {
+    //     places_id: "ChIJxVDbKPbV3IARthVVgHretkk",
+    //     places_name: "The Cellar Restaurant and Spirit Room",
+    //     places_address: "305 N Harbor Blvd, Fullerton"
+    // }];
 
     //uses geocoder to get the lat/lang for the [0] index of the crawlArray and center the map on that place
     function getCentered() {
