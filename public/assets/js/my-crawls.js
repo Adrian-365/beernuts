@@ -1,5 +1,6 @@
 
 $(".my-crawls").on("click", function() {
+    $('#crawl-info').empty();
     axios.get('my-crawls')
     .then(function(response){
         var crawls = response.data;
