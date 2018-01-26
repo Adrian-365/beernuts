@@ -67,6 +67,10 @@ p.medium {
 	margin: 0;
 }
 
+#blurb {
+	column-count: auto;
+}
+
 .top {
 	margin: 0;
 	padding: 0;
