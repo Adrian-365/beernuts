@@ -1,4 +1,4 @@
-$("#create-crawl").on("click", function(e) {
+$(".create-crawl").on("click", function(e) {
     console.log("hey")
     e.preventDefault();
     $.ajax({
@@ -24,11 +24,18 @@ $(".my-crawls").on("click", function() {
             console.log(crawls);
             for (var i = 0; i < crawls.length; i++) {
                 var li = $('<li class="list-group-item">');
-                li.append(`<p>${crawls[i].createdAt}</p>`);
+                li.append(`<p>My Crawl #: ${crawls[i].id}  <a class="nav-link view-crawl" href="/viewthiscrawl?crawlId=${crawls[i].id}">View This Crawl</a></p>`);
                 ul.append(li);
-                li.append(`<p>${crawls[i].CrawlerId}</p>`);
-                ul.append(li);
+                // li.append(`<p>Date Created: ${crawls[i].createdAt}</p>`);
+                // ul.append(li);
+                // li.append(`<a class="nav-link create-crawl" href="#">View This Crawl</a>`);
+                // ul.append(li);
             }
             $('#crawl-info').append(ul);
         });
+})
+
+$('.view-crawl').on('click', function() {
+
+
 })

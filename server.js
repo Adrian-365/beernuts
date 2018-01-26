@@ -14,7 +14,7 @@ var cookieParser = require('cookie-parser');
 var jwt = require("jsonwebtoken");
 var nonAuthHbsRoutes = require("./controllers/non.auth.hbs.routes");
 var authHelpers = require("./helpers/auth.helpers")
-//Sets up the express app
+    //Sets up the express app
 var app = express();
 // override with POST having ?_method=PUT(or DELETE)
 app.use(methodOverride('_method'));
@@ -33,7 +33,7 @@ app.use(bodyParser.json({
 
 app.use(cookieParser());
 
-var auth = function (req, res, next) {
+var auth = function(req, res, next) {
     try {
         console.log("COOKIE AUTH", req.get("Authorization"));
         var token = req.cookies.token || req.get("Authorization").split(" ")[1]
@@ -54,7 +54,7 @@ var auth = function (req, res, next) {
 }
 
 //needed for google maps search
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", '*');
     res.header("Access-Control-Allow-Credentials", true);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -83,7 +83,7 @@ var insecSalt = authHelpers.getSalt();
 //Start server to begin listening 
 models.sequelize.sync({
     force: true
-}).then(function () {
+}).then(function() {
     // run the sql query to seed db here
     // seed the crawlers table
     models.Crawler.bulkCreate([{
@@ -102,8 +102,8 @@ models.sequelize.sync({
         state: "CA",
         zip: "92672",
         blurb: "Tiny the Younger",
-            salt: insecSalt,
-            hash: authHelpers.getHash("meme", insecSalt)
+        salt: insecSalt,
+        hash: authHelpers.getHash("meme", insecSalt)
     }, {
         username: "Caskmaster",
         email: "asd@asd.net",
@@ -111,21 +111,21 @@ models.sequelize.sync({
         state: "CA",
         zip: "90803",
         blurb: "Nice to mead you",
-            salt: insecSalt,
-            hash: authHelpers.getHash("meme", insecSalt)
+        salt: insecSalt,
+        hash: authHelpers.getHash("meme", insecSalt)
     }]);
 
     // seed the crawls table
-    models.Crawls.bulkCreate([{
-        placesID: "ChIJK69IL_bV3IARjfT8rdzx8Xo",
-        crawlerID: "1"
-    }, {
-        placesID: "ChIJK69IL_bV3IARjfT8rdzx8Xo",
-        crawlerID: "1"
-    }, {
-        placesID: "ChIJxVDbKPbV3IARthVVgHretkk",
-        crawlerID: "2"
-    }]);
+    // models.Crawls.bulkCreate([{
+    //     placesID: "ChIJK69IL_bV3IARjfT8rdzx8Xo",
+    //     crawlerID: "1"
+    // }, {
+    //     placesID: "ChIJK69IL_bV3IARjfT8rdzx8Xo",
+    //     crawlerID: "1"
+    // }, {
+    //     placesID: "ChIJxVDbKPbV3IARthVVgHretkk",
+    //     crawlerID: "2"
+    // }]);
 
     // seed the places table
     models.Places.bulkCreate([{
@@ -146,7 +146,7 @@ models.sequelize.sync({
         placesName: "The Cellar Restaurant and Spirit Room",
         placesAddress: "305 N Harbor Blvd, Fullerton"
     }]);
-    app.listen(port, function () {
+    app.listen(port, function() {
         console.log("App listening on PORT " + port);
     });
 });
