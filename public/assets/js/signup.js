@@ -1,9 +1,8 @@
 function getJWTPayload() {
     return JSON.parse(window.atob(localStorage.getItem("token").split('.')[1]));
 }
-$(document).ready(function() {
+$(document).ready(function () {
 
-    var username = $('#username');
     var email = $('#email');
     var city = $('#city');
     var state = $('#state');
@@ -18,14 +17,14 @@ $(document).ready(function() {
     function addUser(event) {
         event.preventDefault();
         console.log("submit")
-        // Don't do anything if the name fields hasn't been filled out
-        if (!username.val().trim().trim()) {
+        // Don't do anything if the email fields hasn't been filled out
+        if (!email.val().trim().trim()) {
             return;
         }
 
         // Calling the upsertUser function and passing in the value of the name input
         upsertUser({
-            username: username.val().trim(),
+
             email: email.val().trim(),
             user_city: city.val().trim(),
             user_state: state.val().trim(),
@@ -37,35 +36,35 @@ $(document).ready(function() {
     // A function for adding an user. Calls getUsers upon completion
     function upsertUser(userData) {
         $.post('/auth/register', userData)
-            .done(function(resp) {
+            .done(function (resp) {
                 window.location.assign("/");
             })
     }
 
-    $("#signin").on("click", function(e) {
+    $("#signin").on("click", function (e) {
         console.log("yo")
         e.preventDefault();
         $.post("/auth/login", {
             email: email.val(),
             password: password.val()
         })
-        .done(function(resp) {
-            console.log(resp);
-            document.cookie = "token=" +resp.token;
-            window.localStorage.setItem("token", resp.token)
-            location.assign("/interface")
-        })
+            .done(function (resp) {
+                console.log(resp);
+                document.cookie = "token=" + resp.token;
+                window.localStorage.setItem("token", resp.token)
+                location.assign("/interface")
+            })
     })
 
     console.log(window.location)
-    if(window.location.pathname === "/interface") {
+    if (window.location.pathname === "/interface") {
         var payload = getJWTPayload();
         console.log(payload)
         $.ajax({
             url: "api/crawls",
-            headers: {'Authorization': "Bearer " + window.localStorage.getItem("token")},
+            headers: { 'Authorization': "Bearer " + window.localStorage.getItem("token") },
             method: "GET"
-        }).done(function(resp) { 
+        }).done(function (resp) {
             console.log(resp);
         })
     }
