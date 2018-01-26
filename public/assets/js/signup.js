@@ -26,10 +26,10 @@ $(document).ready(function () {
         upsertUser({
 
             email: email.val().trim(),
-            user_city: city.val().trim(),
-            user_state: state.val().trim(),
-            user_zip: zip.val().trim(),
-            user_blurb: blurb.val().trim(),
+            city: city.val().trim(),
+            state: state.val().trim(),
+            zip: zip.val().trim(),
+            blurb: blurb.val().trim(),
             password: password.val().trim(),
         });
     }
