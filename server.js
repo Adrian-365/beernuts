@@ -13,6 +13,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var jwt = require("jsonwebtoken");
 var nonAuthHbsRoutes = require("./controllers/non.auth.hbs.routes");
+var authHelpers = require("./helpers/auth.helpers")
 //Sets up the express app
 var app = express();
 // override with POST having ?_method=PUT(or DELETE)
@@ -41,13 +42,11 @@ var auth = function (req, res, next) {
             console.log("we trying")
             jwt.verify(token, process.env.JWT_SECRET);
             next();
-        }
-        catch (err) {
+        } catch (err) {
             console.log("we failin", err)
             throw new Error("Not Authenticated");
         }
-    }
-    catch(err) {
+    } catch (err) {
         console.log("something is really wrong", err)
         throw new Error("Not Authenticated");
     }
@@ -55,7 +54,7 @@ var auth = function (req, res, next) {
 }
 
 //needed for google maps search
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", '*');
     res.header("Access-Control-Allow-Credentials", true);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -77,11 +76,11 @@ app.use(auth);
 app.use('/', handlebarsRoutes);
 app.use("/api", apiRoutes);
 
-
+var insecSalt = authHelpers.getSalt();
 //Start server to begin listening 
 models.sequelize.sync({
     force: true
-}).then(function() {
+}).then(function () {
     // run the sql query to seed db here
     // seed the crawlers table
     models.Crawler.bulkCreate([{
@@ -91,7 +90,8 @@ models.sequelize.sync({
         state: "CA",
         zip: "92602",
         blurb: "Here to beer",
-        password: ""
+        salt: insecSalt,
+        hash: authHelpers.getHash("meme", insecSalt)
     }, {
         username: "Pilsneresque",
         email: "vivanaranja+1pilsneresque@gmail.com",
@@ -99,15 +99,17 @@ models.sequelize.sync({
         state: "CA",
         zip: "92672",
         blurb: "Tiny the Younger",
-        password: ""
+            salt: insecSalt,
+            hash: authHelpers.getHash("meme", insecSalt)
     }, {
         username: "Caskmaster",
-        email: "vivanaranja+1caskmaster@gmail.com",
+        email: "asd@asd.net",
         city: "Long Beach",
         state: "CA",
         zip: "90803",
         blurb: "Nice to mead you",
-        password: ""
+            salt: insecSalt,
+            hash: authHelpers.getHash("meme", insecSalt)
     }]);
 
     // seed the crawls table
@@ -141,7 +143,7 @@ models.sequelize.sync({
         placesName: "The Cellar Restaurant and Spirit Room",
         placesAddress: "305 N Harbor Blvd, Fullerton"
     }]);
-    app.listen(port, function() {
+    app.listen(port, function () {
         console.log("App listening on PORT " + port);
     });
 });

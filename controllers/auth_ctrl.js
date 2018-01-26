@@ -1,29 +1,8 @@
 var express = require("express");
 var models = require("../models");
-var crypto = require("crypto");
-var jwt = require("jsonwebtoken");
-
+var helpers = require("../helpers/auth.helpers")
 var router = express.Router();
 
-function getHash(password, salt) {
-    return crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
-}
-
-function getSalt() {
-    return crypto.randomBytes(16).toString("hex");
-}
-
-function generateJWT(user) {
-    var expire = new Date();
-    expire.setDate(expire.getDate() + 7);
-    return jwt.sign({
-        id: user.id,
-        first: user.firstName,
-        last: user.lastName,
-        email: user.email,
-        exp: expire.getTime() / 1000
-    }, process.env.JWT_SECRET);
-}
 
 router.post("/register", function (req, res) {
     var user = {
@@ -32,8 +11,8 @@ router.post("/register", function (req, res) {
         blurb: req.body.blurb,
         email: req.body.email.trim().toLowerCase(),
     }
-    var salt = getSalt();
-    var hash = getHash(req.body.password, salt);
+    var salt = helpers.getSalt();
+    var hash = helpers.getHash(req.body.password, salt);
     user.salt = salt;
     user.hash = hash;
     models.Crawler.create(user)
@@ -59,11 +38,11 @@ router.post("/login", function (req, res) {
         .then(function (resp) {
             if (resp) {
                 //login
-                var inputHash = getHash(password, resp.salt);
+                var inputHash = helpers.getHash(password, resp.salt);
                 console.log(inputHash.toString(), resp.hash);
                 if (inputHash === resp.hash) {
                     res.json({
-                        token: generateJWT(resp)
+                        token: helpers.generateJWT(resp)
                     });
                 } else {
                     return res.status(400).end('Wrong Password');
