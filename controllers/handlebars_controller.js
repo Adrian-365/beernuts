@@ -49,6 +49,9 @@ router.get("/dummymap", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/dummyhtml.html"));
 });
 
+router.get("/dummycrawlmap", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/dummyCrawlMap.html"));
+});
 
 // Export routes for server.js to use.
 module.exports = router;
