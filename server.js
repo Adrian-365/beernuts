@@ -4,7 +4,7 @@ require("dotenv").config();
 var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var exphbs = require('express-handlebars');
+var hbs = require('express-handlebars');
 var apiRoutes = require('./controllers/api_controller.js');
 var authRoutes = require("./controllers/auth_ctrl");
 var handlebarsRoutes = require('./controllers/handlebars_controller.js');
@@ -63,8 +63,9 @@ app.use(function (req, res, next) {
 });
 
 
-app.engine('handlebars', exphbs({
-    defaultLayout: 'main'
+app.engine('handlebars', hbs({
+    defaultLayout: 'main',
+    partialsDir: __dirname + '/views/partials/'
 }));
 app.set('view engine', 'handlebars');
 // Serve static content from the public directory
@@ -76,7 +77,9 @@ app.use(auth);
 app.use('/', handlebarsRoutes);
 app.use("/api", apiRoutes);
 
+
 var insecSalt = authHelpers.getSalt();
+
 //Start server to begin listening 
 models.sequelize.sync({
     force: true

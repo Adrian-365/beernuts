@@ -16,6 +16,18 @@ router.get('/makecrawl', function(req, res) {
     res.render("makecrawl");
 });
 
+router.get('/my-crawls', function (req, res) {
+    models.Crawls.findAll({})
+        .then(function (data) {
+            console.log('mycrawls',data);
+            // res.render("my-crawls", data)
+            res.json(data);
+        })
+        .catch(function (err) {
+            console.error(err);
+        });
+});
+
 router.get('/crawlers', function(req, res) {
     models.Crawler.findAll({})
         .then(function(data) {
@@ -31,6 +43,9 @@ router.get("/dummymap", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/dummyhtml.html"));
 });
 
+router.get("/dummycrawlmap", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/dummyCrawlMap.html"));
+});
 
 // Export routes for server.js to use.
 module.exports = router;
