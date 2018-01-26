@@ -17,15 +17,8 @@ router.get('/makecrawl', function(req, res) {
 });
 
 router.get('/my-crawls', function (req, res) {
-    models.Crawls.findAll({})
-        .then(function (data) {
-            console.log('mycrawls',data);
-            // res.render("my-crawls", data)
-            res.json(data);
-        })
-        .catch(function (err) {
-            console.error(err);
-        });
+    res.render("my-crawls");
+        
 });
 
 router.get('/crawlers', function(req, res) {
