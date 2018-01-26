@@ -134,7 +134,7 @@ router.get("/crawls", function(req, res) {
 
     models.Crawls.findAll({
         where: query,
-        include: [models.Crawler]
+        include: [models.Crawler, models.Places]
     }).then(function(modelsCrawls) {
         res.json(modelsCrawls);
     });
