@@ -6,10 +6,11 @@ var router = express.Router();
 
 router.post("/register", function (req, res) {
     var user = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
         blurb: req.body.blurb,
         email: req.body.email.trim().toLowerCase(),
+        city: req.body.city,
+        state: req.body.state,
+        zip: req.body.zip
     }
     var salt = helpers.getSalt();
     var hash = helpers.getHash(req.body.password, salt);
