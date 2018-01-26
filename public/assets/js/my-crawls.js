@@ -1,6 +1,6 @@
 
 $(".my-crawls").on("click", function() {
-    axios.get('my-crawls')
+     axios.get('my-crawls')
     .then(function(response){
         var crawls = response.data;
         var ul = $('<ul class="list-group">');
