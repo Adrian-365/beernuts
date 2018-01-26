@@ -8,7 +8,7 @@ var lng = -117.755315;
 
 //initial map function:
 function myMapx() {
-
+    console.log('maplogic.js in the house!!');
     $(document).on('click', '.add', addPlaceIdToCrawl);
 
     function addPlaceIdToCrawl(event) {
