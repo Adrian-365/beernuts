@@ -4,7 +4,7 @@ var helpers = require("../helpers/auth.helpers")
 var router = express.Router();
 
 
-router.post("/register", function (req, res) {
+router.post("/register", function(req, res) {
     var user = {
         blurb: req.body.blurb,
         email: req.body.email.trim().toLowerCase(),
@@ -17,18 +17,18 @@ router.post("/register", function (req, res) {
     user.salt = salt;
     user.hash = hash;
     models.Crawler.create(user)
-        .then(function (resp) {
+        .then(function(resp) {
             res.json({
                 success: true
             });
         })
-        .catch(function (err) {
+        .catch(function(err) {
             console.error(err);
             throw err;
         });
 
 });
-router.post("/login", function (req, res) {
+router.post("/login", function(req, res) {
     var email = req.body.email;
     var password = req.body.password;
     models.Crawler.findOne({
@@ -36,7 +36,7 @@ router.post("/login", function (req, res) {
                 email: email
             }
         })
-        .then(function (resp) {
+        .then(function(resp) {
             if (resp) {
                 //login
                 var inputHash = helpers.getHash(password, resp.salt);
@@ -53,7 +53,7 @@ router.post("/login", function (req, res) {
                 return res.status(404).end('User not found');
             }
         })
-        .catch(function (err) {
+        .catch(function(err) {
             return res.status(500).end('LMAO WTF');
             console.log(err);
         })
