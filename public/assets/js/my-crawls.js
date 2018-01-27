@@ -24,18 +24,9 @@ $(".my-crawls").on("click", function() {
             console.log(crawls);
             for (var i = 0; i < crawls.length; i++) {
                 var li = $('<li class="list-group-item">');
-                li.append(`<p>My Crawl #: ${crawls[i].id}  <a class="nav-link view-crawl" href="/viewthiscrawl?crawlId=${crawls[i].id}">View This Crawl</a></p>`);
+                li.append(`<p>Crawl #: ${crawls[i].id}  <a class="nav-link view-crawl" href="/viewthiscrawl?crawlId=${crawls[i].id}">View This Crawl</a></p>`);
                 ul.append(li);
-                // li.append(`<p>Date Created: ${crawls[i].createdAt}</p>`);
-                // ul.append(li);
-                // li.append(`<a class="nav-link create-crawl" href="#">View This Crawl</a>`);
-                // ul.append(li);
             }
             $('#crawl-info').append(ul);
         });
-})
-
-$('.view-crawl').on('click', function() {
-
-
 })
