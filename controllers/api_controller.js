@@ -7,7 +7,7 @@ var models = require("../models")
 // Create all our routes and set up logic within those routes where required.
 // Shouldn't all this be in the routes files in the routes folder? Asking for a friend.
 
-<<<<<<< HEAD
+
 // //Crawler signin
 // router.post('/crawler/signup', function(req, res) {
 //     console.log(req.body);
@@ -28,7 +28,7 @@ var models = require("../models")
 //     });
 
 // });
-=======
+
 
 router.post('/crawlers/signup', function(req, res) {
     console.log(req.body);
@@ -37,7 +37,7 @@ router.post('/crawlers/signup', function(req, res) {
             res.json(resp);
         })
 });
->>>>>>> fac17594c9ec46d8b56baed04ba18ccf413b3fe7
+
 
 // crawler routes
 router.get('/crawlers', function(req, res) {
