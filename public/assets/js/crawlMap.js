@@ -13,23 +13,23 @@ function myMap2() {
             { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
             {
                 featureType: 'administrative.locality',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#d59563' }]
+                elementType: 'all',
+                stylers: [{ visibility: "off" }]
             },
             {
                 featureType: 'poi',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#d59563' }]
+                elementType: 'all',
+                stylers: [{ visibility: "off" }]
             },
             {
                 featureType: 'poi.park',
-                elementType: 'geometry',
-                stylers: [{ color: '#263c3f' }]
+                elementType: 'all',
+                stylers: [{ visibility: "off" }]
             },
             {
                 featureType: 'poi.park',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#6b9a76' }]
+                elementType: 'all',
+                stylers: [{ visibility: "off" }]
             },
             {
                 featureType: 'road',
@@ -94,8 +94,7 @@ function myMap2() {
 
     //define geocoder as the google maps Geocoder method
     var geocoder = new google.maps.Geocoder();
-    // *******************************************
-    // *******************************************
+
     // Function for retrieving pubs and getting them ready to be rendered to the page
 
     //Below gets the crawlID from the url
@@ -105,52 +104,24 @@ function myMap2() {
     console.log('crawlId = ' + crawlId);
     //this establishes an empty array where we are going to put our places objects (the names, addresses and googleId's of the pubs in this crawl)
     const crawlArray = [];
-    console.log('Hey crawlMap.js!!!!!!!!!!!')
 
     function getThisCrawl(id) {
         $.get('api/crawl/' + crawlId, makeCrawlArray);
-
-
     };
 
     function makeCrawlArray(data) {
         // console.log(data[0])
         for (var i = 0; i < data.length; i++) {
             crawlArray.push(data[i]);
-
-        }
-
+        };
+        getCentered(crawlArray);
     };
-    // calling the above function to get the crawlArray populated with the pubs from this crawl
-    getThisCrawl();
-
-    console.log(crawlArray);
-
-    // *********************************************
-    // *********************************************
-    // a mocked up array of placeId 's from a specific crawl already established.
-    // const crawlArray = [{
-    //     places_id: "ChIJC0Th0_fV3IARsf1y9Cnl0zc",
-    //     places_name: "Branagan's Irish Pub",
-    //     places_address: "213 North Harbor Boulevard, Fullerton"
-    // }, {
-    //     places_id: "ChIJt0I-1Akq3YARa5kFf9wDubc",
-    //     places_name: "Back Alley Bar & Grill",
-    //     places_address: "116 West Wilshire Avenue, Fullerton"
-
-    // }, {
-    //     places_id: "ChIJK69IL_bV3IARjfT8rdzx8Xo",
-    //     places_name: "Fullerton Brew Co",
-    //     places_address: "305 North Harbor Boulevard Suite 128, Fullerton"
-    // }, {
-    //     places_id: "ChIJxVDbKPbV3IARthVVgHretkk",
-    //     places_name: "The Cellar Restaurant and Spirit Room",
-    //     places_address: "305 N Harbor Blvd, Fullerton"
-    // }];
 
     //uses geocoder to get the lat/lang for the [0] index of the crawlArray and center the map on that place
-    function getCentered() {
+    function getCentered(crawlArray) {
+        console.log("in getCenterd:  " + crawlArray);
         var placeId = crawlArray[0].googlePlaceID;
+        console.log(placeId);
         geocoder.geocode({ 'placeId': placeId }, function(results, status) {
             if (status == 'OK') {
                 map.setCenter(results[0].geometry.location);
@@ -158,9 +129,9 @@ function myMap2() {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
         });
+        placeMarkers(crawlArray)
     };
-    //calls the above function
-    getCentered();
+
 
     //lat lng of Las Vegas dowtown for some reason.
     var lat = 36.168347;
@@ -187,7 +158,8 @@ function myMap2() {
     //loop through the crawlArray and get a marker for each placeId.
     const markers = [];
 
-    function placeMarkers() {
+    function placeMarkers(crawlArray) {
+        console.log("in placeMarkers:  " + crawlArray);
         for (var i = 0; i < crawlArray.length; i++) {
             var placeId = crawlArray[i].googlePlaceID;
             geocoder.geocode({ 'placeId': placeId }, function(results, status) {
@@ -205,26 +177,12 @@ function myMap2() {
             });
 
         }
-        console.log(markers)
-
-
-
-
+        createList(crawlArray);
     };
-    //calls the above function
-    placeMarkers();
 
-    // Below the map, render an unordered list with the name and address of each place on the map.  Include corresponding number starting at 1.
-    // function createList() {
-    //     far(var i = 0; i < carwlArray.length; i++) {
-
-    //         var pubRow = `<tr><td>${place.name}</td><td>${place.vicinity}</td></tr>`;
-    //         $("#crawlList").append(pubRow);
-    //     }
-
-    // };
 
     function createList() {
+        console.log("in createList:  " + crawlArray);
         for (var i = 0; i < crawlArray.length; i++) {
 
             var pubRow = `<tr><td>${crawlArray[i].placesName}</td><td>${crawlArray[i].placesAddress}</td></tr>`;
@@ -232,15 +190,9 @@ function myMap2() {
         }
 
     };
-    createList();
 
 
-
-
+    // calling the above function to get the crawlArray populated with the pubs from this crawl
+    getThisCrawl();
 };
-
-
-
-
-
 //END myMap2()

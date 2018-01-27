@@ -80,23 +80,23 @@ function myMapx() {
             { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
             {
                 featureType: 'administrative.locality',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#d59563' }]
+                elementType: 'all',
+                stylers: [{ visibility: "off" }]
             },
             {
                 featureType: 'poi',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#d59563' }]
+                elementType: 'all',
+                stylers: [{ visibility: "off" }]
             },
             {
                 featureType: 'poi.park',
-                elementType: 'geometry',
-                stylers: [{ color: '#263c3f' }]
+                elementType: 'all',
+                stylers: [{ visibility: "off" }]
             },
             {
                 featureType: 'poi.park',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#6b9a76' }]
+                elementType: 'all',
+                stylers: [{ visibility: "off" }]
             },
             {
                 featureType: 'road',
