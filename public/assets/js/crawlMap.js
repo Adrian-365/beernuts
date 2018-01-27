@@ -106,13 +106,13 @@ function myMap2() {
     //this establishes an empty array where we are going to put our places objects (the names, addresses and googleId's of the pubs in this crawl)
     const crawlArray = [];
 
-    function getCrawlMap() {
+    function getCrawlArray() {
 
 
 
     };
     // calling the above function to get the crawlArray populated with the pubs from this crawl
-    getCrawlMap();
+    getCrawlArray();
 
     // *********************************************
     // *********************************************
