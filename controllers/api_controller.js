@@ -7,7 +7,26 @@ var models = require("../models")
 // Create all our routes and set up logic within those routes where required.
 // Shouldn't all this be in the routes files in the routes folder? Asking for a friend.
 
+//**************not sure if this will work...**************
+router.get('/crawl/:id', function(req, res) {
+    models.Places.findAll({
+            include: [{
+                model: models.Crawls,
+                where: { id: req.params.id }
+            }]
 
+        })
+        .then(function(resp) {
+            console.log('YaaaYYYYYYYY!!! Association')
+            console.log(resp);
+        })
+
+});
+//*********************************************************
+
+
+
+// post a new crawler
 router.post('/crawlers/signup', function(req, res) {
     console.log(req.body);
     models.Crawler.create(req.body)
@@ -16,7 +35,7 @@ router.post('/crawlers/signup', function(req, res) {
         })
 });
 
-// crawler routes
+// get all crawlers
 router.get('/crawlers', function(req, res) {
 
     models.Crawler.findAll({})
@@ -27,6 +46,7 @@ router.get('/crawlers', function(req, res) {
             console.error(err);
         });
 });
+//get a crawler with a specific id
 router.get('/crawlers/:id', function(req, res) {
     console.log(models)
     models.Crawler.findOne({
