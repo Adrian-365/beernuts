@@ -26,6 +26,8 @@
                 ul.append(li);
                 li.append(`<p>${crawls[i].id}</p>`);
                 ul.append(li);
+                li.append(`<p>${crawls[i].placesName}</p>`);
+                ul.append(li);
             }
             $('#crawl-info').append(ul);
         });
