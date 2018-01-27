@@ -114,10 +114,17 @@ function myMap2() {
     };
 
     function makeCrawlArray(data) {
-        console.log(data[0])
-    }
+        // console.log(data[0])
+        for (var i = 0; i < data.length; i++) {
+            crawlArray.push(data[i]);
+
+        }
+
+    };
     // calling the above function to get the crawlArray populated with the pubs from this crawl
     getThisCrawl();
+
+    console.log(crawlArray);
 
     // *********************************************
     // *********************************************
@@ -143,7 +150,7 @@ function myMap2() {
 
     //uses geocoder to get the lat/lang for the [0] index of the crawlArray and center the map on that place
     function getCentered() {
-        var placeId = crawlArray[0].places_id;
+        var placeId = crawlArray[0].googlePlaceID;
         geocoder.geocode({ 'placeId': placeId }, function(results, status) {
             if (status == 'OK') {
                 map.setCenter(results[0].geometry.location);
@@ -182,7 +189,7 @@ function myMap2() {
 
     function placeMarkers() {
         for (var i = 0; i < crawlArray.length; i++) {
-            var placeId = crawlArray[i].places_id;
+            var placeId = crawlArray[i].googlePlaceID;
             geocoder.geocode({ 'placeId': placeId }, function(results, status) {
                 if (status == 'OK') {
                     // markers.push(createMarker(results[0].geometry.location))
@@ -220,7 +227,7 @@ function myMap2() {
     function createList() {
         for (var i = 0; i < crawlArray.length; i++) {
 
-            var pubRow = `<tr><td>${crawlArray[i].places_name}</td><td>${crawlArray[i].places_address}</td></tr>`;
+            var pubRow = `<tr><td>${crawlArray[i].placesName}</td><td>${crawlArray[i].placesAddress}</td></tr>`;
             $("#crawlList").append(pubRow);
         }
 
