@@ -10,16 +10,19 @@ var models = require("../models")
 //**************not sure if this will work...**************
 router.get('/crawl/:id', function(req, res) {
     models.Places.findAll({
-            include: [{
-                model: models.Crawls,
-                where: { id: req.params.id }
-            }]
+        include: [{
+            model: models.Crawls,
+            where: { id: req.params.id }
+        }]
 
-        })
-        .then(function(resp) {
-            console.log('YaaaYYYYYYYY!!! Association')
-            console.log(resp);
-        })
+    })
+
+    .then(function(crawl) {
+        // console.log('YaaaYYYYYYYY!!! Association')
+        res.json(crawl);
+        var respObj = JSON.stringify(crawl)
+        console.log(respObj);
+    });
 
 });
 //*********************************************************
