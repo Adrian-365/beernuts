@@ -16,8 +16,8 @@ router.get('/makecrawl', function(req, res) {
     res.render("makecrawl");
 });
 
-router.get('/viewcrawls', function(req, res) {
-    res.render("viewcrawls");
+router.get('/viewthiscrawl', function(req, res) {
+    res.render("viewthiscrawl");
 });
 
 router.get('/my-crawls', function(req, res) {
