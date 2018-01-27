@@ -108,7 +108,7 @@ function myMap2() {
 
     function getCrawlArray() {
         $.get('api/crawl/' + crawlId, function(data) {
-            console.log('hey got some data' + data);
+            console.log("Places", data);
 
         })
         crawlArray = data;

@@ -17,8 +17,8 @@ router.get('/crawl/:id', function(req, res) {
 
         })
         .then(function(resp) {
-            console.log('HEEEEEEEYYYYYYYY!!! GET ASSOCIATION')
-            res.json(resp);
+            console.log('YaaaYYYYYYYY!!! Association')
+            console.log(resp);
         })
 
 });
