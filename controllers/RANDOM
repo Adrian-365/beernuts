@@ -1,0 +1,57 @@
+[Places {
+    dataValues: {
+        id: 5,
+        googlePlaceID: 'ChIJR1SZh1Lv3IARP
+        placesName: 'Stadium Brew Co.',
+        placesAddress: '26731 Aliso Creek
+        createdAt: 2018 - 01 - 27 T04: 07: 32.00
+        updatedAt: 2018 - 01 - 27 T04: 07: 32.00
+        Crawls: [Object]
+    },
+    _previousDataValues: {
+        id: 5,
+        googlePlaceID: 'ChIJR1SZh1Lv3IARP
+        placesName: 'Stadium Brew Co.',
+        placesAddress: '26731 Aliso Creek
+        createdAt: 2018 - 01 - 27 T04: 07: 32.00
+        updatedAt: 2018 - 01 - 27 T04: 07: 32.00
+        Crawls: [Object]
+    },
+    _changed: {},
+    _modelOptions: {
+        timestamps: true,
+        validate: {},
+        freezeTableName: false,
+        underscored: false,
+        underscoredAll: false,
+        paranoid: false,
+        rejectOnEmpty: false,
+        whereCollection: null,
+        schema: null,
+        schemaDelimiter: '',
+        defaultScope: {},
+        scopes: [],
+        indexes: [],
+        name: [Object],
+        omitNull: false,
+        sequelize: [Object],
+        hooks: {},
+        uniqueKeys: {}
+    },
+    _options: {
+        isNewRecord: false,
+        _schema: null,
+        _schemaDelimiter: '',
+        include: [Object],
+        includeNames: [Object],
+        includeMap: [Object],
+        includeValidated: true,
+        attributes: [Object],
+        raw: true
+    },
+    __eagerlyLoadedAssociations: [],
+    isNewRecord: false,
+    Crawls: [
+        [Object]
+    ]
+}]

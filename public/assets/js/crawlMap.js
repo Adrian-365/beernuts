@@ -105,17 +105,19 @@ function myMap2() {
     console.log('crawlId = ' + crawlId);
     //this establishes an empty array where we are going to put our places objects (the names, addresses and googleId's of the pubs in this crawl)
     const crawlArray = [];
+    console.log('Hey crawlMap.js!!!!!!!!!!!')
 
-    function getCrawlArray() {
-        $.get('api/crawl/' + crawlId, function(data) {
-            console.log('hey got some data' + data);
-            
-        })
-        // crawlArray = data;
+    function getThisCrawl(id) {
+        $.get('api/crawl/' + crawlId, makeCrawlArray);
+
 
     };
+
+    function makeCrawlArray(data) {
+        console.log(data[0])
+    }
     // calling the above function to get the crawlArray populated with the pubs from this crawl
-    getCrawlArray();
+    getThisCrawl();
 
     // *********************************************
     // *********************************************
@@ -177,42 +179,6 @@ function myMap2() {
 
     //loop through the crawlArray and get a marker for each placeId.
     const markers = [];
-    ///---TRYING A DIFFERENT WAY------------------------------------------------
-    // var service = new google.maps.places.PlacesService(map);
-
-    // //search for 
-    // function placeMarkers() {
-    //     for (var i = 0; i < crawlArray.length; i++) {
-    //         var placeId = crawlArray[i];
-    //         console.log(placeId)
-    //         request = {
-    //             location: center,
-    //             radius: 1600,
-    //             placeId: placeId
-    //         }
-    //         service.nearbySearch(request, callback);
-    //     }
-
-    //     function callback(results, status) {
-    //         console.log('callback results: ' + results);
-    //         if (status == google.maps.places.PlacesServiceStatus.OK) {
-    //             markers.push(createMarker(results[0]));
-    //         }
-
-    //     }
-
-    //     function createMarker(place) {
-    //         var placeLoc = place.geometry.location;
-    //         var marker = new google.maps.Marker({
-    //             map: map,
-    //             position: place.geometry.location,
-    //             animation: google.maps.Animation.DROP,
-    //             icon: './public/assets/images/beer16px.png'
-    //         });
-    //     }
-    // }
-    // placeMarkers();
-    ///----END DIFFERENT WAY-----------------
 
     function placeMarkers() {
         for (var i = 0; i < crawlArray.length; i++) {
