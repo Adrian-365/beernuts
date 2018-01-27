@@ -112,7 +112,7 @@ router.get('/crawls/:id', function(req, res) {
 });
 router.post('/crawls', function(req, res) {
     console.log(req.body.CrawlerId)
-    models.Crawls.create({ CrawlerId: req.body.CrawlerID })
+    models.Crawls.create({ CrawlerId: req.body.CrawlerId })
         .then(function(crawl) {
             res.json(crawl)
         })

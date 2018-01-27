@@ -164,7 +164,7 @@ function myMapx() {
     //create map and add it to the page
     var mapDiv = document.getElementById('googleMap');
     //set the map placement and zoom
-    map = new google.maps.Map(mapDiv, {
+    var map = new google.maps.Map(mapDiv, {
         center: center,
         zoom: 14,
         mapTypeControloptions: {
@@ -189,7 +189,9 @@ function myMapx() {
         keyword: ['pub', 'bar', 'cocktails', 'Happy hour drinks']
     }
 
-    infowindow = new google.maps.InfoWindow();
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString
+    });
 
     service = new google.maps.places.PlacesService(map);
 
@@ -323,6 +325,7 @@ function createMarker(place) {
         animation: google.maps.Animation.DROP,
         icon: './assets/images/beer16px.png'
     });
+    
 
     //BEGIN add info tag to marker if clicked
     google.maps.event.addListener(marker, 'click', function(event) {
@@ -365,6 +368,9 @@ if (navigator.geolocation) {
             lat: position.coords.latitude,
             lng: position.coords.longitude
         };
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
 
         infowindow.setPosition(pos);
         infowindow.setContent('Location found.');
@@ -393,7 +399,7 @@ if (navigator.geolocation) {
 }
 
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+function handleLocationError(browserHasGeolocation, infowindow, pos) {
     infowindow.setPosition(pos);
     infowindow.setContent(browserHasGeolocation ?
         'Error: The Geolocation service failed.' :
