@@ -11,6 +11,7 @@ var models = require("../models")
 router.get('/crawl/:id', function(req, res) {
     models.PlacesToCrawlsJoin.findAll({
 
+<<<<<<< HEAD
 
             include: [{
                 model: models.Places,
@@ -21,6 +22,38 @@ router.get('/crawl/:id', function(req, res) {
         .then(function(resp) {
             res.json(resp);
         })
+=======
+// //Crawler signin
+// router.post('/crawler/signup', function(req, res) {
+//     console.log(req.body);
+//     models.Crawler.create(req.body)
+//         .then(function(resp) {
+//             res.json(resp);
+//         }).catch(function(err){
+//             console.log(err);
+//         });
+// });
+
+// router.get('/crawler/login', function(req,res){
+//     console.log(req.body);
+//     models.Crawler.findall({}).then(function(data) {
+//         res.json(data);
+//     }).catch(function(err){
+//         console.log(err);
+//     });
+
+// });
+
+
+router.post('/crawlers/signup', function(req, res) {
+    console.log(req.body);
+    models.Crawler.create(req.body)
+        .then(function(resp) {
+            res.json(resp);
+        })
+});
+
+>>>>>>> 86e80c11520cd2c980cbb4e8ad61299ce22e37c3
 
 });
 //*********************************************************
