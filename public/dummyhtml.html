@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- lines 22, 24, 33 and 35 are important. -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Dummy Map Page</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Pub Map Mock-Up</h1>
+        <br>
+        <div class='row'>
+            <div class="panel panel-default">
+                <div class='panel-heading'>
+                    <h4>Local Pub Finder (Right Click on Map to search again there)</h4>
+                    <!-- <input type="text" id='generalSearch' class="controls" placeholder="Enter Whatev"> -->
+                    <!-- below id="pac-input" is important -->
+                    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                    <!-- below id=="googleMap" is important -->
+                    <div id="googleMap" style='height:450px; width: 70%'></div>
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class="panel panel-default" style="min-height: 160px">
+                <table class='table' id="crawlList">
+                    <tr>
+                        <th>Pub Name</th>
+                        <th>Pub Address</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- !-- link to the maplogic file -->-->
+    <script src="/assets/js/maplogic.js"></script>
+    <!-- route below conatains API Key and is important -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnAQs-jyK4ZZvqWDMHowl8LZm97MmHyZM&zoom=13&libraries=places&callback=myMapx"></script>
+    < </body>
+
+</html>

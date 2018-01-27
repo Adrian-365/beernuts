@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="top">
+        <h1 id="title" class="hidden">
+            <span id="logo">PubCrawl</span>
+        </h1>
+    </div>
+    <div class="signup-box animated rotateInUpLeft">
+        <div class="box-header">
+            <h3>Sign Up</h3>
+        </div>
+        <form action="/api/crawlers/signup" method="POST">
+
+            <div class="top-row">
+                <label>
+                    Email Address
+                    <span class="req">*</span>
+                </label>
+                <br>
+                <input type="email" name="email" id="email" required autocomplete="off" />
+                <br>
+                <label>
+                    Set A Password
+                    <span class="req">*</span>
+                </label>
+                <br>
+                <input type="password" name="password" id="password" required autocomplete="off" />
+                <br>
+                <label for="city">
+                    City
+                    <span class="req">*</span>
+                </label>
+                <br>
+                <input type="text" name="city" id="city" required autocomplete="off" />
+                <br>
+                <label for="state">
+                    State
+                    <span class="req">*</span>
+                </label>
+                <br>
+                <input type="text" name="state" id="state" required autocomplete="off" />
+                <br>
+                <label for="zip">
+                    Zip Code
+                    <span class="req">*</span>
+                </label>
+                <br>
+                <input type="text" name="zip" id="zip" required autocomplete="off" />
+                <br>
+                <label for="blurb">
+                    Tell crawlers about yourself
+                </label>
+                <br>
+                <input type="text" name="blurb" id="blurb" required autocomplete="off" />
+                <br>
+                <button type="submit" id="submit" class="button button-block" />Get Started</button>
+        </form>
+        
+        <h4>Already a Crawler? </h4>
+        
+        <a href="/">
+            <p class="medium">Log in!</p>
+        </a>
+        </div>
+
+
+    </div>

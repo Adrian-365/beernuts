@@ -1,0 +1,39 @@
+
+
+<div class="container">
+	<div class="top">
+		<h1 id="title" class="hidden">
+			<span id="logo">PubCrawl</span>
+		</h1>
+	</div>
+
+	<div class="panel panel-info animated rotateInUpLeft">
+<!-- Default panel contents -->
+  		<div class="panel-heading" style='background-color:aliceblue'>
+			  {{!-- <h3>Your Crawl!</h3> --}}
+		</div>
+  		<div class="panel-body">
+			  {{!-- <input id="pac-input" class="controls" type="text" placeholder="Search Box"> --}}
+    
+                    <!-- below id=="googleMap" is important -->
+            <div id='googleMap2' style='height:350px; width: 100%; background-color:bisque' class='col-md-offset-3'>
+<!-- below id="pac-input" is important -->
+            
+
+	    </div>>
+  		</div>
+
+  <!-- Table -->
+  <table class="table" id="crawlList" style="background-color:aliceblue">
+    <tr>
+                        <th>Pub Name</th>
+                        <th>Pub Address</th>
+                    </tr>
+  </table>
+	</div>
+    
+</div>
+	
+<script src="/assets/js/crawlMap.js" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnAQs-jyK4ZZvqWDMHowl8LZm97MmHyZM&zoom=13&libraries=places&callback=myMap2"></script>
+

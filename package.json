@@ -1,0 +1,37 @@
+{
+  "name": "beernuts",
+  "version": "1.0.0",
+  "description": "pub crawl",
+  "main": "maplogic.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adrian-365/beernuts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adrian-365/beernuts/issues"
+  },
+  "homepage": "https://github.com/Adrian-365/beernuts#readme",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.11",
+    "jsonwebtoken": "^8.1.1",
+    "method-override": "^2.3.10",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.5.1",
+    "sequelize": "^4.32.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.11"
+  }
+}
