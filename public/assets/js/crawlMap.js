@@ -107,8 +107,11 @@ function myMap2() {
     const crawlArray = [];
 
     function getCrawlArray() {
+        $.get('api/crawl/' + crawlId, function(data) {
+            console.log('hey got some data' + data);
 
-
+        })
+        crawlArray = data;
 
     };
     // calling the above function to get the crawlArray populated with the pubs from this crawl
