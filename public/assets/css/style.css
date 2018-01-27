@@ -175,7 +175,7 @@ p.medium {
 /* Animation Delay */
 #logo {
   -webkit-animation-duration: 1s;
-  -webkit-animation-delay: 2s;
+  -webkit-animation-delay: 1s;
 }
 
 .login-box {
